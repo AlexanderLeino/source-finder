@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import QMakeGroup from "./components/QMakeGroup";
 import GroupPage from "./pages/GroupPage";
+import NavBar from "./components/NavBar";
 
 
 const client = new ApolloClient({
@@ -21,6 +22,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
     <Router>
+        <NavBar/>
       <Routes>
         <Route path='/' element={<HomePage />}></Route>
         <Route path='/login' element={<Login />}></Route>

@@ -1,14 +1,12 @@
 import React from 'react'
 import './HomePage.css'
-import SidebarCategories from '../components/SidebarCategories'
-import SearchBar from '../components/SearchBar'
-import HeroSection from '../components/HeroSection'
-import DashboardMenu from '../components/DashboardMenu'
-import AboutSection from '../components/AboutSection'
-import Footer from '../components/Footer'
 import Auth from '../utils/auth'
-import QHome from './QHome'
-
+import { Button } from '@mui/material'
+import gradient from '../dreamy gradients Γÿü∩╕Å Γ£¿/strawberrylemonade.png'
+import sourceFinder from '../images/sourceFinder.svg'
+import Grid  from '@mui/material/Grid'
+import  Box  from '@mui/material/Box'
+import Card from '../components/Card'
 
 
 
@@ -17,31 +15,20 @@ import QHome from './QHome'
 
 function HomePage() {
   const userData = Auth.getProfile()
-
-  console.log(userData)
   return (
-    <>
-    {!userData == null ? <div>
-        <SearchBar />
-          <div className='wrapper'>
-            <div className='box-one'>
-              <DashboardMenu />
-            </div>
-            <div className='box-two'>
-              <SidebarCategories />
-            </div>
-          </div>
-        <HeroSection />
-        <AboutSection />
-        <Footer />
-    </div> : 
-    
-    <div>
-      <QHome />
-    </div>
-    }
-    
-    </>
+  <>
+  <Box style={{display:'flex', justifyContent:'center'}}>
+    <Box margin={3}>
+      <Card />
+    </Box>
+    <Box margin={3}>
+      <Card />
+    </Box>
+    <Box margin={3}>
+      <Card />
+    </Box>
+  </Box>
+  </>
   )
 }
 
