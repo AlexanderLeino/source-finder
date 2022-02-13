@@ -24,6 +24,9 @@ const userSchema = new Schema (
             type: String,
             required: true,
         },
+        profilePic: {
+            type: String,
+        },
         aboutMe: {
             type: String,
         },
