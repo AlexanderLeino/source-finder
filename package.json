@@ -1,0 +1,31 @@
+{
+  "name": "hashnode-hackathon",
+  "version": "1.0.0",
+  "description": "![View 1](building.png)",
+  "main": "index.js",
+  "scripts": {
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexanderLeino/hashnode-hackathon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexanderLeino/hashnode-hackathon/issues"
+  },
+  "homepage": "https://github.com/AlexanderLeino/hashnode-hackathon#readme",
+  "dependencies": {
+    "@mui/icons-material": "^5.4.1",
+    "jwt-decode": "^3.1.2",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^5.0.0",
+    "web-vitals-reporter": "^1.0.0"
+  },
+  "devDependencies": {
+    "web-vitals": "^2.1.4"
+  }
+}
