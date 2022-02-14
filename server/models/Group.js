@@ -16,6 +16,9 @@ const Group = new Schema({
         type: String,
         required:true
     },
+    profilePic: {
+        type: String
+    },
     adminId: {
         type: String,
         required: true
