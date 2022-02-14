@@ -1,19 +1,30 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: 20px 250px;
-  grid-template-rows: auto;
-  justify-items: start;
-  align-items: center;
+.spacer { 
+  aspect-ratio: 960/550;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
 }
 
-.box-one {
-  grid-column-start: 1;
-  grid-column-end: 2;
+.layer1 {
+  background-image: url('../images/waves.svg');
 }
 
-.box-two {
-  grid-column-start: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  justify-items: start;
+#root {
+  background-color: #bf4578;
+}
+
+.bottomSpacer {
+  aspect-ratio: 960/550;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
+
+.layer2 {
+  background-image: url('../images/bottomWave.svg');
+  
 }
