@@ -15,16 +15,6 @@ const db = app.firestore()
 
 const GroupPage=() =>{
 
-    const fetchImg = async () => {
-        const collections = await db.collection('images').get()
-
-        console.log(collections.docs.map((doc) => {
-            return doc.data()
-        }))
-    }
-
-    //fetchImg()
-    console.log(storage.ref('images').child('400.png'))
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
     const [progress, setProgress] = useState(0);

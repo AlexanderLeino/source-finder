@@ -28,6 +28,7 @@ const typeDefs = gql`
         _id: ID!
         groupName: String
         techNeeded: [String]
+        profilePic: String
         aboutGroup: String
         category: String
         adminId: String
@@ -74,6 +75,7 @@ const typeDefs = gql`
         userName: String
         email: String
         password: String
+        profilePic: String
         aboutMe: String
         GithubLink: String
         TwitterLink: String
@@ -92,7 +94,7 @@ const typeDefs = gql`
         createUser(userName: String!, password: String!, email: String!) : Auth
         login(email: String!, password: String!): Auth
         updateUser(user: UpdatedUser): User
-        createGroup(groupName: String!, techNeeded: [String], aboutGroup: String!, category: String!, adminId: String!): Group
+        createGroup(groupName: String!, techNeeded: [String], profilePic: String, aboutGroup: String!, category: String!, adminId: String!): Group
     }
 `
 module.exports = typeDefs
