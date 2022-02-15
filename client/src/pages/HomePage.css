@@ -6,9 +6,20 @@
   background-size: cover;
   height: 100%;
 }
+.spacer2 { 
+  aspect-ratio: 1500/1000;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
 
 .layer1 {
   background-image: url('../images/wave-haikei.svg');
+}
+.layer2 {
+  background-image: url('../images/gradient.svg');
 }
 
 #root {
