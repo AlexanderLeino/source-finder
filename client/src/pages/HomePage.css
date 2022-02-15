@@ -28,3 +28,18 @@
   background-image: url('../images/bottomWave.svg');
   
 }
+
+ h1 {
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px pink;
+  font-size: 5rem;
+  
+}
+
+@media (max-width: 566px){
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+}
