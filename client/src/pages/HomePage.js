@@ -9,7 +9,7 @@ import groupImage from '../images/teamwork.svg'
 import {IoLogoJavascript} from 'react-icons/io'
 import { SiMongodb, SiChakraui, SiPython, SiJquery, SiFigma, SiReact, SiBootstrap} from 'react-icons/si'
 import { GrGraphQl, GrMysql } from 'react-icons/gr'
-import Footer from '../components/Footer'
+
 
 const groupData = [
   {   
@@ -62,31 +62,22 @@ function HomePage() {
   
   </Box>
  
-  <Grid container spacing={3} alignItems='center' style={{marginTop:'20px'}}>
+  <Grid container spacing={3} alignItems='center' >
     <Grid  xs={12} sm={12} md={6}>
-    <div style={{textAlign:'center', paddingLeft:'1.50rem', marginTop:'3.5rem'}}>
+    <div style={{textAlign:'center', paddingLeft:'1.50rem'}}>
         <h1 className='who-are-we'>Who Are We?</h1>
-        <div style={{ color:'white', textAlign:'center', fontSize:'2rem', marginBottom:'30px',  lineHeight:'2.55rem', marginTop:'2rem' }}>Our Mission is to create a fun and accessible enviroment where computer programmers can create a group to connect with one another and build anything your heart desires no matter the scale! </div>
+        <div className='missionStatement'>Our Mission is to create a fun and accessible enviroment where computer programmers can create a group to connect with one another and build anything your heart desires no matter the scale! </div>
         <Button  variant='contained' style={{background:'#bf4578', fontWeight:'bold', marginBottom:'2rem', padding:'.75rem', border:'2px solid white', marginTop:'2rem', letterSpacing:'5px'}}> Start Exploring</Button>
     </div>
     </Grid>
     <Grid item xs={12} sm={12} md={6}>
-      <img style={{width:'100%'}} src={groupImage}/>
+      <img className='womenCoding' src={groupImage}/>
     </Grid>
   </Grid>
   </Container>
-    <Grid container spacing={3} alignItems='center'>
-        <Grid item xs={4}>
 
-        </Grid>
-        <Grid item xs={4}>
-            
-        </Grid>
-        <Grid item xs={4}>
-            
-        </Grid>
-    </Grid>
-    <Footer/>
+ 
+
   </Box>
   
    
