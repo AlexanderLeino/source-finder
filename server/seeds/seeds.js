@@ -364,3 +364,5 @@ const seedData = async () => {
 }
 
 seedData()
+
+module.exports = groupData
