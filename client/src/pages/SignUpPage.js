@@ -87,6 +87,8 @@ function InitialSignUpPage() {
         <Box style={{display:'flex', justifyContent:'flex-end'}}>
             <Button variant='contained' onClick={handleBack} disabled={activeStep === 0}>Back</Button>
             <Button variant='contained' onClick={handleNext} disabled={activeStep === 3}>Next</Button>
+            <Button variant='contained' onClick={handleNext} disabled={activeStep < 3}>Next</Button>
+            
         </Box>
     </Container>
     </Container>
