@@ -13,6 +13,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Auth from '../utils/auth'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar() {
+export default function NavBar(userData) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -77,28 +78,56 @@ export default function NavBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  let renderMenu
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+  if (Auth.loggedIn()){
+    renderMenu = (
+    
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </Menu>
+    );
+  } 
+  else{
+    renderMenu = (
+    
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>Login</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Sign Up</MenuItem>
+      </Menu>
+    )
+  }
+  
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -153,6 +182,7 @@ export default function NavBar() {
   );
 
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{background:'#190B28', height:'65px'}}>
         <Toolbar>
@@ -166,6 +196,40 @@ export default function NavBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          {!Auth.loggedIn() ? 
+          
+          (<>
+          <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+            </>) :
+          
+          
+          (<>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -206,10 +270,12 @@ export default function NavBar() {
               <MoreIcon />
             </IconButton>
           </Box>
+          </>)}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
     </Box>
+    </>
   );
 }
