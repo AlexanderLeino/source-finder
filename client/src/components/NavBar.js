@@ -17,7 +17,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 
 import Auth from '../utils/auth'
 
-import logo from '../images/logo.svg'
+import logo from '../images/save.png'
 import { height } from '@mui/system';
 
 
@@ -203,7 +203,7 @@ export default function NavBar(userData) {
         <Toolbar>
 
         <Link to={'/'}>
-          <img style={{height:'200px', marginTop:'37px'}} src={logo}></img>
+          <img style={{height:'75px'}} src={logo}></img>
         </Link>
           <h2 className='title'>Source Finder</h2>
     
