@@ -8,6 +8,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import SignUpForm from '../components/SignUpForm'
+import './SignUpPage.css'
 
 
 
@@ -28,6 +29,9 @@ function InitialSignUpPage() {
     // const [email, setEmail] = useState('')
     // const [password, setPassword] = useState('')
   return (<>
+  
+<Container maxWidth='100%' className='layer2 spacer2'>
+
 
     <Container>
         <h1 style={{textAlign: 'center'}}>Your Journey Starts Here!</h1>
@@ -53,7 +57,7 @@ function InitialSignUpPage() {
         </Grid>
     </Box>
     </Container >
-    <Container maxWidth style={{background:'#393da9d9', paddingTop:'2rem', paddingBottom:'2rem'}}>
+    <Container maxWidth style={{ paddingTop:'2rem', paddingBottom:'2rem'}}>
         
         <Container maxWidth='sm'>
         <Box sx={{ width: '100%' }}>
@@ -85,7 +89,7 @@ function InitialSignUpPage() {
             <Button variant='contained' onClick={handleNext} disabled={activeStep === 3}>Next</Button>
         </Box>
     </Container>
-
+    </Container>
 </>
   )
 }

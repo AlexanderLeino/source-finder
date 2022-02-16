@@ -12,6 +12,7 @@ import SignUpPage from "./pages/SignUpPage";
 import QMakeGroup from "./components/QMakeGroup";
 import GroupPage from "./pages/GroupPage";
 import NavBar from './components/NavBar'
+import Footer from "./components/Footer";
 
 
 const client = new ApolloClient({
