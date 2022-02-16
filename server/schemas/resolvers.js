@@ -17,8 +17,8 @@ const resolvers = {
             ])
             return user
         },
-        getOneGroup: async (parent, {_id}) => {
-            const group = await Group.findById(_id).populate([{
+        getOneGroup: async (parent, {groupName}) => {
+            const group = await Group.findOne(groupName).populate([{
                 path: 'groupMembers',
                 model: 'User'
             }

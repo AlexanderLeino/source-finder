@@ -84,32 +84,65 @@ export default function NavBar(userData) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  let renderMenu
+
+  const goSignUp = () =>{
+    window.location = '/signUp'
+  }
+  const goLogIn = () => {
+    window.location = '/login'
+  }
+
 
   const menuId = 'primary-search-account-menu';
+  
+  let renderMenu
 
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Groups</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-    </Menu>
-  );
+  if (Auth.loggedIn()){
+    renderMenu = (
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+        <MenuItem onClick={handleMenuClose}>My Groups</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      </Menu>
+    );
+  }else{
+    renderMenu = (
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={goLogIn}>Log In</MenuItem>
+        <MenuItem onClick={goSignUp}>Sign Up</MenuItem>
+      </Menu>
+    );
+  }
+  
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -169,9 +202,9 @@ export default function NavBar(userData) {
       <AppBar position="static" style={{background:'#190B28', height:'65px'}}>
         <Toolbar>
 
-        <Link to={'/'}>
+        {/* <Link to={'/'}> */}
           <img style={{height:'200px', marginTop:'37px'}} src={logo}></img>
-        </Link>
+        {/* </Link> */}
           <h2 className='title'>Source Finder</h2>
     
         
@@ -217,7 +250,6 @@ export default function NavBar(userData) {
               <MoreIcon />
             </IconButton>
           </Box>
-          </>)}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
