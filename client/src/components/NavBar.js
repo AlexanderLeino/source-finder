@@ -202,9 +202,9 @@ export default function NavBar(userData) {
       <AppBar position="static" style={{background:'#190B28', height:'65px'}}>
         <Toolbar>
 
-        {/* <Link to={'/'}> */}
+        <Link to={'/'}>
           <img style={{height:'200px', marginTop:'37px'}} src={logo}></img>
-        {/* </Link> */}
+        </Link>
           <h2 className='title'>Source Finder</h2>
     
         

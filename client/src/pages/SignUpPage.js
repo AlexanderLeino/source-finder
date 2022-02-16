@@ -8,6 +8,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import SignUpForm from '../components/SignUpForm'
+import TestForm from '../components/testForm'
 import './SignUpPage.css'
 
 
@@ -16,18 +17,55 @@ import './SignUpPage.css'
 function InitialSignUpPage() {
     const steps = ['Who Are You?', 'Select Preferred Technologies', 'Account Creation Complete'];
     const [activeStep, setActiveStep] = useState(0);
-
+    const localStorage = window.localStorage
 
     const handleNext = () => {
-     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    const inputUser = document.getElementById('username').value
+    const inputPass1 = document.getElementById('pass1').value
+    const inputPass2 = document.getElementById('pass2').value
+    const inputEmail = document.getElementById('email').value
+
+    localStorage.setItem('userName', inputUser)
+    localStorage.setItem('pass1', inputPass1)
+    localStorage.setItem('pass2', inputPass2)
+    localStorage.setItem('email', inputEmail)
+
    };
  
    const handleBack = () => {
      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+     //localStorage.removeItem('userName')
    };
-    // const [userName, setUserName] = useState('')
-    // const [email, setEmail] = useState('')
-    // const [password, setPassword] = useState('')
+    
+
+    const submitForm = () => {
+      
+
+      if (inputPass1 === inputPass2){
+          const userData = {
+            userName: inputUser,
+            email: inputEmail,
+            password: inputPass1,
+          }
+        console.log(userData)
+        // try {
+    
+        //     console.log(userData)
+        //     const { data: { createUser: { token } } } = await createUser({
+        //         variables: {
+        //             ...userData
+        //         }
+        //     })
+        //     Auth.login(token)
+    
+        // }
+        // catch (err) {
+        //     console.log(err)
+        // }
+      }
+      
+    }
   return (<>
   
 <Container maxWidth='100%' className='layer2 spacer2'>
@@ -82,13 +120,15 @@ function InitialSignUpPage() {
         </>
     </Box>
         </Container>
-        <SignUpForm />
+        {activeStep === 0 ? (<SignUpForm />) : (<div></div>)}
+        {activeStep === 1 ? (<SignUpForm />) : (<div></div>)}
+        {activeStep === 2 ? (<TestForm />) : (<div></div>)}
+        
  
         <Box style={{display:'flex', justifyContent:'flex-end'}}>
             <Button variant='contained' onClick={handleBack} disabled={activeStep === 0}>Back</Button>
-            <Button variant='contained' onClick={handleNext} disabled={activeStep === 3}>Next</Button>
-            <Button variant='contained' onClick={handleNext} disabled={activeStep < 3}>Next</Button>
-            
+            <Button variant='contained' onClick={handleNext} disabled={activeStep === 2}>Next</Button>
+            <Button variant='contained' onClick={submitForm} disabled={activeStep < 2}>Submit</Button>
         </Box>
     </Container>
     </Container>
