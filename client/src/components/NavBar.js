@@ -14,8 +14,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+
+import Auth from '../utils/auth'
+
 import logo from '../images/logo.svg'
 import { height } from '@mui/system';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,7 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar() {
+export default function NavBar(userData) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -80,8 +84,10 @@ export default function NavBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  let renderMenu
 
   const menuId = 'primary-search-account-menu';
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -158,6 +164,7 @@ export default function NavBar() {
   );
 
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{background:'#190B28', height:'65px'}}>
         <Toolbar>
@@ -169,6 +176,7 @@ export default function NavBar() {
     
         
         
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -209,10 +217,12 @@ export default function NavBar() {
               <MoreIcon />
             </IconButton>
           </Box>
+          </>)}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
     </Box>
+    </>
   );
 }

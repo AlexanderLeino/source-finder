@@ -25,7 +25,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
     <Router>
-        <NavBar/>
+        <NavBar userData={userData}/>
       <Routes>
         <Route path='/' element={<HomePage />}></Route>
         <Route path='/login' element={<Login />}></Route>
