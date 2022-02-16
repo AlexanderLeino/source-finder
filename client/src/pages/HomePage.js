@@ -62,7 +62,7 @@ function HomePage() {
   
   </Box>
  
-  <Grid container spacing={3} alignItems='center' >
+  <Grid container spacing={3} alignItems='center' style={{marginTop:'2rem'}} >
     <Grid  xs={12} sm={12} md={6}>
     <div style={{textAlign:'center', paddingLeft:'1.50rem'}}>
         <h1 className='who-are-we'>Who Are We?</h1>
