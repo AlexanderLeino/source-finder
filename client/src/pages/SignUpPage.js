@@ -11,7 +11,8 @@ import SignUpForm from '../components/SignUpForm'
 import TestForm from '../components/testForm'
 import './SignUpPage.css'
 import AlexTest from '../components/AlexTest'
-
+import { AiFillStar } from 'react-icons/ai'
+import { List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -75,27 +76,44 @@ function InitialSignUpPage() {
   return (<>
   
 <Container maxWidth='100%' className='layer2 spacer2'>
-
-
-    
-   
-    
     <Container >
     <Box mt={4}>
-        <Grid container alignItems='center' spacing={3}>
+        <Grid container alignItems='center' style={{display:'flex', justifyContent:'center'}} spacing={3}>
        
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} >
             <div className='speechBubble'>
                 <div style={{textAlign:'center', fontSize:'2.5rem', fontWeight:'bold'}}>Personalize Your Experience</div>
-            <ul style={{textAlign: 'center', marginTop: '1rem', listStyle:'none', lineHeight:'2.25rem', fontWeight:'bold'}}>
-                <li style={{textAlign: 'center', fontSize:'1.25rem', marginLeft: '28px'}}>Able To Easily Request to Join A Group</li>
-                <li style={{textAlign: 'center', fontSize:'1.25rem'}}>Tailored Group Suggestions</li>
-                <li style={{textAlign: 'center', fontSize:'1.25rem'}}>Start Building a Proof of Work with Us!</li>
-            </ul>
+              <List style={{marginTop: '1rem', fontWeight:'bold'}}>
+                  <ListItem >
+                    <ListItemIcon>
+                      <AiFillStar className='star' />
+                    </ListItemIcon>
+                    <ListItemText>
+                    Able To Easily Request to Join A Group
+                    </ListItemText>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemIcon>
+                      <AiFillStar className='star'/>
+                    </ListItemIcon>
+                    <ListItemText>
+                    Tailored Group Suggestions
+                    </ListItemText>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemIcon>
+                      <AiFillStar className='star'/>
+                    </ListItemIcon>
+                    <ListItemText>
+                    Start Building a Proof of Work with Us!
+                    </ListItemText>
+                  </ListItem>
+              </List>
+            
             </div>
             </Grid>
-            <Grid item xs={12} sm={6} maxWidth='fit-content'>
-                <img style={{height: 'auto', maxWidth:'600px', padding:'0px'}} src={humanCoding} alt='A picture of a women sitting at her computer'></img>
+            <Grid item xs={12} sm={6}  maxWidth='fit-content'>
+                <img style={{height: 'auto', maxWidth:'600px', padding:'0px', minWidth:"200px"}} src={humanCoding} alt='A picture of a male and female sitting at a computer appearing to be coding'></img>
             </Grid>
          
         </Grid>
