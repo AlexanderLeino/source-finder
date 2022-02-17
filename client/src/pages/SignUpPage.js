@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import humanCoding from '../images/human-coding.png'
+import humanCoding from '../images/pairProgramming.svg'
 import Button from '@mui/material/Button'
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -10,6 +10,7 @@ import StepLabel from '@mui/material/StepLabel';
 import SignUpForm from '../components/SignUpForm'
 import TestForm from '../components/testForm'
 import './SignUpPage.css'
+import AlexTest from '../components/AlexTest'
 
 
 
@@ -71,27 +72,27 @@ function InitialSignUpPage() {
 <Container maxWidth='100%' className='layer2 spacer2'>
 
 
-    <Container>
-        <h1 style={{textAlign: 'center'}}>Your Journey Starts Here!</h1>
-    </Container>
+    
    
     
     <Container >
     <Box mt={4}>
-        <Grid container alignItems='center'>
-            <Grid item xs={6}>
-                <div style={{textAlign:'center', fontSize:'2.5rem'}}>Personalize Your Experience</div>
-
-            <ul style={{textAlign: 'center', marginTop: '1rem', listStyle:'none', lineHeight:'2.25rem'}}>
+        <Grid container alignItems='center' spacing={3}>
+       
+            <Grid item xs={12} sm={6}>
+            <div className='speechBubble'>
+                <div style={{textAlign:'center', fontSize:'2.5rem', fontWeight:'bold'}}>Personalize Your Experience</div>
+            <ul style={{textAlign: 'center', marginTop: '1rem', listStyle:'none', lineHeight:'2.25rem', fontWeight:'bold'}}>
                 <li style={{textAlign: 'center', fontSize:'1.25rem', marginLeft: '28px'}}>Able To Easily Request to Join A Group</li>
                 <li style={{textAlign: 'center', fontSize:'1.25rem'}}>Tailored Group Suggestions</li>
                 <li style={{textAlign: 'center', fontSize:'1.25rem'}}>Start Building a Proof of Work with Us!</li>
             </ul>
-
+            </div>
             </Grid>
-            <Grid item xs={6} maxWidth='fit-content'>
+            <Grid item xs={12} sm={6} maxWidth='fit-content'>
                 <img style={{height: 'auto', maxWidth:'600px', padding:'0px'}} src={humanCoding} alt='A picture of a women sitting at her computer'></img>
             </Grid>
+         
         </Grid>
     </Box>
     </Container >
@@ -121,14 +122,14 @@ function InitialSignUpPage() {
     </Box>
         </Container>
         {activeStep === 0 ? (<SignUpForm />) : (<div></div>)}
-        {activeStep === 1 ? (<SignUpForm />) : (<div></div>)}
+        {activeStep === 1 ? (<AlexTest />) : (<div></div>)}
         {activeStep === 2 ? (<TestForm />) : (<div></div>)}
         
  
         <Box style={{display:'flex', justifyContent:'flex-end'}}>
             <Button variant='contained' onClick={handleBack} disabled={activeStep === 0}>Back</Button>
-            <Button variant='contained' onClick={handleNext} disabled={activeStep === 2}>Next</Button>
-            <Button variant='contained' onClick={submitForm} disabled={activeStep < 2}>Submit</Button>
+            {activeStep < 2 ? <Button variant='contained' onClick={handleNext} disabled={activeStep === 2}>Next</Button> : <Button variant='contained' onClick={submitForm} disabled={activeStep < 2}>Submit</Button>}
+            
         </Box>
     </Container>
     </Container>
