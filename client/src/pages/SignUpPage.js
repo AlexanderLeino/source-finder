@@ -12,6 +12,9 @@ import TestForm from '../components/testForm'
 import './SignUpPage.css'
 import AlexTest from '../components/AlexTest'
 
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 
 
@@ -19,7 +22,8 @@ function InitialSignUpPage() {
     const steps = ['Who Are You?', 'Select Preferred Technologies', 'Account Creation Complete'];
     const [activeStep, setActiveStep] = useState(0);
     const localStorage = window.localStorage
-
+    const [createUser] = useMutation(CREATE_USER);
+    
     const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     const inputUser = document.getElementById('username').value
@@ -40,31 +44,32 @@ function InitialSignUpPage() {
    };
     
 
-    const submitForm = () => {
+    const submitForm = async () => {
+      
       
 
-      if (inputPass1 === inputPass2){
+     // if (inputPass1 === inputPass2){
           const userData = {
-            userName: inputUser,
-            email: inputEmail,
-            password: inputPass1,
+            userName: localStorage.getItem('userName'),
+            email: localStorage.getItem('email'),
+            password: localStorage.getItem('pass1')
           }
         console.log(userData)
-        // try {
+        try {
     
-        //     console.log(userData)
-        //     const { data: { createUser: { token } } } = await createUser({
-        //         variables: {
-        //             ...userData
-        //         }
-        //     })
-        //     Auth.login(token)
+            console.log(userData)
+            const { data: { createUser: { token } } } = await createUser({
+                variables: {
+                    ...userData
+                }
+            })
+            Auth.login(token)
     
-        // }
-        // catch (err) {
-        //     console.log(err)
-        // }
-      }
+        }
+        catch (err) {
+            console.log(err)
+        }
+      //}
       
     }
   return (<>
