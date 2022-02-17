@@ -14,11 +14,29 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
 
 import Auth from '../utils/auth'
 
 import logo from '../images/save.png'
 import { height } from '@mui/system';
+
+import Login from './Login'
+//style for modal
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 700,
+  height: 500,
+  bgcolor: 'purple',
+  border: '3px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -65,6 +83,10 @@ export default function NavBar(userData) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -88,11 +110,7 @@ export default function NavBar(userData) {
   const goSignUp = () =>{
     window.location = '/signUp'
   }
-  const goLogIn = () => {
-    window.location = '/login'
-  }
-
-
+  
   const menuId = 'primary-search-account-menu';
   
   let renderMenu
@@ -137,7 +155,7 @@ export default function NavBar(userData) {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={goLogIn}>Log In</MenuItem>
+        <MenuItem onClick={handleOpen}>Log In</MenuItem>
         <MenuItem onClick={goSignUp}>Sign Up</MenuItem>
       </Menu>
     );
@@ -255,6 +273,20 @@ export default function NavBar(userData) {
       {renderMobileMenu}
       {renderMenu}
     </Box>
+
+
+    <div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Login />
+        </Box>
+      </Modal>
+    </div>
     </>
   );
 }

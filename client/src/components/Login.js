@@ -3,6 +3,9 @@ import { useState } from "react";
 
 import { useMutation } from '@apollo/client';
 import { LOG_IN } from "../utils/mutations";
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
 
 
@@ -44,23 +47,42 @@ function Login (){
     return(
         <>
         
-        <form onSubmit={handleFormSubmit}>
-            <input
-            placeholder='Email'
-            type='email'
-            id='email'
+
+        
+        <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '40ch', height: '100%' },
+          }}
+          noValidate
+          autoComplete="off"
+          style={{display:'flex', justifyContent:'center', flexDirection:'column'}}
+
+        >
+
+          <h2>Login</h2>
+          <TextField
+            id="outlined-name"
+            label="Email Address"
             value={emailAddress}
-            onChange={({ target }) => setEmailAdress(target.value)}>
-            </input>
-            <input 
-            placeholder='Password'
-            type='password'
-            id='password'
+            onChange={({target}) => setEmailAdress(target.value)}
+          />
+
+          <TextField
+            id="outlined-name"
+            label="Password"
             value={password}
-            onChange={({ target }) => setPassword(target.value)}>
-            </input>
-            <button type="submit">Login</button>
-        </form>
+            onChange={({target}) => setPassword(target.value)}
+            
+          />
+
+
+            
+
+          <Button variant='contained' onClick={handleFormSubmit}>Login</Button>
+
+          </Box>
+        
         </>
     )
 }
