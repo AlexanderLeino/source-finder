@@ -14,20 +14,25 @@
   .blob {
     background-image: url('../images/blob-haikei.svg');
   }
+@media (min-width: 800px){
+  .img {
+    width: 392px;
+  }
+}
 
+@media (min-width: 601px){
+  
   .speechBubble {
    position: relative;
    width: fit-content;
    height:fit-content;
-   padding: 0px;
+   
    background: #fefdff3a;
    -webkit-border-radius: 10px;
    -moz-border-radius: 10px;
    border-radius: 10px;
    padding: 2rem;
-   line-height: 1.5rem;
   }
-
   .speechBubble:after {
     content: '';
     position: absolute;
@@ -40,4 +45,35 @@
     right: -40px;
     top: 80px;
     
+  }
+}
+
+
+  @media (max-width: 600px){
+    .speechBubble
+    {
+       position: relative;
+       width: fit-content;
+       height:fit-content;
+       padding: 2rem;
+       background: #fefdff3a;
+       -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+       border-radius: 10px;
+    }
+    
+    .speechBubble:after
+    {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 20px 20px 0;
+        border-color: #fefdff3a transparent;
+        display: block;
+        width: 0;
+        z-index: 1;
+        bottom: -20px;
+        left: 105px;
+    }
+
   }
