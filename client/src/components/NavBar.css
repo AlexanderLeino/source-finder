@@ -1,0 +1,32 @@
+.title {
+    font-size: 43px;
+    color: #bf4578;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 583px) {
+      .title {
+        font-size: 36px;
+        
+    }
+}
+@media (max-width: 583px) {
+    .title {
+        font-size: 28px;
+        margin-left:1px
+    }
+}
+
+@media (max-width: 360px) {
+  .title {
+  font-size: 20px;
+  margin-left:1px;
+   
+ 
+  }
+}
+
+
+  
+  

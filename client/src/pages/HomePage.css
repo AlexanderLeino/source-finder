@@ -47,16 +47,6 @@
   margin-top: 2rem;
 }
 
-.title {
-  margin-left:20px;
-}
-
-@media (max-width: 899px) {
-  .title {
-    margin-left: 100px;
-  }
-}
-
 @media (max-width: 566px){
   h1 {
     font-size: 3rem;
