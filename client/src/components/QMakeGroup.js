@@ -18,6 +18,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { storage } from '../firebase'
 import { app } from '../firebase'
 
+
+
 const db = app.firestore()
 
 
@@ -223,6 +225,7 @@ function QMakeGroup(){
                 </button>
             </form>
         </Container>
+        
         </div>
 
 
