@@ -16,9 +16,8 @@ import { List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { BsFillPersonLinesFill } from 'react-icons/bs'
 
+import { Select } from '@mui/material'
 
 function InitialSignUpPage() {
     const steps = ['Who Are You?', 'Select Preferred Technologies', 'Account Creation Complete'];
@@ -32,11 +31,13 @@ function InitialSignUpPage() {
     const inputPass1 = document.getElementById('pass1').value
     const inputPass2 = document.getElementById('pass2').value
     const inputEmail = document.getElementById('email').value
+    const inputSkillSet = document.getElementById('skillSet').value
 
     localStorage.setItem('userName', inputUser)
     localStorage.setItem('pass1', inputPass1)
     localStorage.setItem('pass2', inputPass2)
     localStorage.setItem('email', inputEmail)
+    localStorage.setItem('skillSet', inputSkillSet )
 
    };
  
@@ -195,7 +196,7 @@ function InitialSignUpPage() {
         {activeStep === 1 ? (<AlexTest />) : (<div></div>)}
         {activeStep === 2 ? (<TestForm />) : (<div></div>)}
         
- 
+        
         <Box style={{display:'flex', justifyContent:'center', marginTop:'2rem'}}>
             <Button
           
