@@ -27,7 +27,7 @@ import { height } from '@mui/system';
 
 import Login from './Login'
 
-import MyAvitar from '../components/MyAvitar'
+// import MyAvitar from '../components/MyAvitar'
 
 //style for modal
 const style = {
@@ -214,7 +214,7 @@ export default function NavBar(userData) {
           color="inherit"
         >
           {/* <AccountCircle /> */}
-          <MyAvitar />
+          {/* <MyAvitar /> */}
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -262,7 +262,7 @@ export default function NavBar(userData) {
               color="inherit"
             >
               {/* <AccountCircle /> */}
-              <MyAvitar />
+              {/* <MyAvitar /> */}
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Container from '@mui/material/Container'
-import { InputLabel, Select, MenuItem, Box } from '@mui/material'
+import { InputLabel, Select, MenuItem, Box, FormControl } from '@mui/material'
 import {useState} from 'react'
 function SignUpForm() {
   const localStorage = window.localStorage
@@ -15,7 +15,8 @@ function SignUpForm() {
   const [pass1, settingPass1] = useState(oldPass1)
   const [pass2, settingPass2] = useState(oldPass2)
   const [skillSet, setSkillSet] = useState(selectedSkillSet)
-  console.log(skillSet)
+  
+  const handleChange = e => setSkillSet(e.target.value)
 
   return (<>
   
@@ -33,23 +34,22 @@ function SignUpForm() {
             <input onChange={({target}) => settingPass2(target.value)}  type='password' id='pass2' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={pass2}/>
           
 
-          
+
             <InputLabel id="demo-simple-select-label" style={{fontSize:'1.25rem', marginBottom: '.5rem',}}>Skill Set</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
                   id="skillSet"
                   value={skillSet}
                   label="Skill Set"
                   onChange={({target}) => setSkillSet(target.value)} 
                 >
-                  <MenuItem  value={"Frontend"}>Frontend</MenuItem>
+                  <MenuItem  value={"Frontend"}>Front End</MenuItem>
                   <MenuItem  value={"Full Stack"}>Full Stack</MenuItem>
-                  <MenuItem  value={"Backend"}>Backend</MenuItem>
+                  <MenuItem  value={"Backend"}>Back End</MenuItem>
                 </Select>
       
+         
                   </form>
                   </Container>
-                
   </>
   )
 }

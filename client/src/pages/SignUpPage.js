@@ -18,6 +18,8 @@ import { CREATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 import { Select } from '@mui/material'
+import SkillsButton from '../components/SkillsButton'
+import SelectTechForm from '../components/SelectTechForm'
 
 function InitialSignUpPage() {
     const steps = ['Who Are You?', 'Select Preferred Technologies', 'Account Creation Complete'];
@@ -147,7 +149,7 @@ function InitialSignUpPage() {
               fontSize:'20px',
               height:'auto',
               fontWeight: "bold",
-              color:'lightRed',
+              color:'white',
               textAlign:'center'
 
               },
@@ -193,7 +195,7 @@ function InitialSignUpPage() {
     
         </Container>
         {activeStep === 0 ? (<SignUpForm />) : (<div></div>)}
-        {activeStep === 1 ? (<AlexTest />) : (<div></div>)}
+        {activeStep === 1 ? (<SelectTechForm />) : (<div></div>)}
         {activeStep === 2 ? (<TestForm />) : (<div></div>)}
         
         

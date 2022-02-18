@@ -31,7 +31,6 @@ const resolvers = {
         },
         getSkills: async (parent, skillSet) => {
             let destructuredSkill = skillSet.skill
-            
             const skillBubbles = await SkillSet.find({
                 discipline: {$in: destructuredSkill}
             })
@@ -42,7 +41,6 @@ const resolvers = {
     Mutation: {
         createUser: async (parent, args) => {
             try {
-                console.log(args)
                 const user = await User.create(args)
                 const token = signToken(user)
                 return { user, token }
