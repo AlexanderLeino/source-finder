@@ -30,6 +30,7 @@ export const UPDATE_USER = gql`
             userName
             email
             password
+            profilePic
             aboutMe
             GithubLink
             TwitterLink

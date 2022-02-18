@@ -24,6 +24,9 @@ import logo from '../images/save.png'
 import { height } from '@mui/system';
 
 import Login from './Login'
+
+import MyAvitar from '../components/MyAvitar'
+
 //style for modal
 const style = {
   position: 'absolute',
@@ -108,6 +111,9 @@ export default function NavBar(userData) {
   const goSignUp = () =>{
     window.location = '/signUp'
   }
+  const goEditProfile = () => {
+    window.location = '/edit'
+  }
   
   const menuId = 'primary-search-account-menu';
   
@@ -131,7 +137,7 @@ export default function NavBar(userData) {
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+        <MenuItem onClick={goEditProfile}>Edit Profile</MenuItem>
         <MenuItem onClick={handleMenuClose}>My Groups</MenuItem>
         <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
       </Menu>
@@ -199,13 +205,14 @@ export default function NavBar(userData) {
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size="large"
+          // size="large"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          {/* <AccountCircle /> */}
+          <MyAvitar />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -243,7 +250,7 @@ export default function NavBar(userData) {
               </Badge>
             </IconButton>
             <IconButton
-              size="large"
+              // size="large"
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -251,12 +258,13 @@ export default function NavBar(userData) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              {/* <AccountCircle /> */}
+              <MyAvitar />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-              size="large"
+              // size="large"
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"

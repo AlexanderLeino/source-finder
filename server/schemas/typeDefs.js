@@ -10,6 +10,7 @@ const typeDefs = gql`
         lastName: String
         email: String!
         password: String!
+        profilePic: String
         aboutMe: String
         GithubLink: String
         TwitterLink: String
@@ -61,6 +62,7 @@ const typeDefs = gql`
         lastName: String
         email: String!
         password: String!
+        profilePic: String
         aboutMe: String
         GithubLink: String
         TwitterLink: String

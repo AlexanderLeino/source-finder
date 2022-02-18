@@ -11,6 +11,8 @@ import { SiMongodb, SiChakraui, SiPython, SiJquery, SiFigma, SiReact, SiBootstra
 import { GrGraphQl, GrMysql } from 'react-icons/gr'
 
 
+
+
 const groupData = [
   {   
      
@@ -80,6 +82,7 @@ function HomePage() {
 
   </Box>
   
+
    
   </>
   )
