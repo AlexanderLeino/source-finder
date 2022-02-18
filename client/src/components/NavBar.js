@@ -30,10 +30,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 700,
-  height: 500,
-  bgcolor: 'purple',
-  border: '3px solid #000',
+  bgcolor: '#bf4578',
+  border: '1px solid #000',
   boxShadow: 24,
   p: 4,
 };
