@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config()
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/groupies", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/sourceFinder", {
     useNewUrlParser: true,
     //useUnifiedTopology: true,
     //useCreateIndex: true,
