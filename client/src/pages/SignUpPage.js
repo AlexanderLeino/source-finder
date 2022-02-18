@@ -16,6 +16,31 @@ import { List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import { styled } from '@mui/material/styles';
+
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+    top: 10,
+    left: 'calc(-50% + 16px)',
+    right: 'calc(50% + 16px)',
+  },
+  [`&.${stepConnectorClasses.active}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: '#784af4',
+    },
+  },
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: '#784af4',
+    },
+  },
+  [`& .${stepConnectorClasses.line}`]: {
+    borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+    borderTopWidth: 3,
+    borderRadius: 1,
+  },
+}));
 
 
 
@@ -82,8 +107,8 @@ function InitialSignUpPage() {
        
             <Grid item xs={12} sm={6} >
             <div className='speechBubble'>
-                <div style={{textAlign:'center', fontSize:'2.5rem', fontWeight:'bold'}}>Personalize Your Experience</div>
-              <List style={{marginTop: '1rem', fontWeight:'bold'}}>
+                <div className='signUpTitle'>Personalize Your Experience</div>
+              <List style={{marginTop: '1rem', fontWeight:'bold', paddingTop:'0px'}}>
                   <ListItem >
                     <ListItemIcon>
                       <AiFillStar className='star' />
@@ -113,7 +138,7 @@ function InitialSignUpPage() {
             </div>
             </Grid>
             <Grid item xs={12} sm={6}  maxWidth='fit-content'>
-                <img style={{height: 'auto', maxWidth:'600px', padding:'0px', minWidth:"200px"}} src={humanCoding} alt='A picture of a male and female sitting at a computer appearing to be coding'></img>
+                <img  src={humanCoding} alt='A picture of a male and female sitting at a computer appearing to be coding'></img>
             </Grid>
          
         </Grid>
@@ -123,12 +148,12 @@ function InitialSignUpPage() {
         
         <Container maxWidth='sm'>
         <Box sx={{ width: '100%' }}>
-      <Stepper styles={{}} activeStep={activeStep}>
+      <Stepper  connector={<QontoConnector />} activeStep={activeStep}>
         {steps.map((label) => {
           const stepProps = {};
           return (
             <Step  key={label} {...stepProps}>
-              <StepLabel StepIconProps={{classes: {
+              <StepLabel  StepIconProps={{classes: {
                 text: {
                   fill: 'green'
                 }

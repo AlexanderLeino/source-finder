@@ -7,6 +7,7 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
+import { Container } from '@mui/material'
 
 
 function Login (){
@@ -51,21 +52,20 @@ function Login (){
         
         <Box
           component="form"
-          sx={{
-            '& > :not(style)': { m: 1, width: '40ch', height: '100%' },
-          }}
           noValidate
           autoComplete="off"
-          style={{display:'flex', justifyContent:'center', flexDirection:'column'}}
+          style={{display:'flex', justifyContent:'center', flexDirection:'column', padding:'2rem', alignItems:'center'}}
 
         >
 
           <h2>Login</h2>
+       
           <TextField
             id="outlined-name"
             label="Email Address"
             value={emailAddress}
             onChange={({target}) => setEmailAdress(target.value)}
+            style={{marginTop:'1rem'}}
           />
 
           <TextField
@@ -73,8 +73,8 @@ function Login (){
             label="Password"
             value={password}
             onChange={({target}) => setPassword(target.value)}
-            
           />
+ 
 
 
             
