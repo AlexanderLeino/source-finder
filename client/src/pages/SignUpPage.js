@@ -16,31 +16,6 @@ import { List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-import { styled } from '@mui/material/styles';
-
-const QontoConnector = styled(StepConnector)(({ theme }) => ({
-  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-    top: 10,
-    left: 'calc(-50% + 16px)',
-    right: 'calc(50% + 16px)',
-  },
-  [`&.${stepConnectorClasses.active}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: '#784af4',
-    },
-  },
-  [`&.${stepConnectorClasses.completed}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: '#784af4',
-    },
-  },
-  [`& .${stepConnectorClasses.line}`]: {
-    borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
-    borderTopWidth: 3,
-    borderRadius: 1,
-  },
-}));
 
 
 
@@ -146,18 +121,24 @@ function InitialSignUpPage() {
     </Container >
     <Container maxWidth style={{ paddingTop:'2rem', paddingBottom:'2rem'}}>
         
-        <Container maxWidth='sm'>
-        <Box sx={{ width: '100%' }}>
-      <Stepper  connector={<QontoConnector />} activeStep={activeStep}>
+        <Container maxWidth='md' style={{display:'flex', justifyContent:'center', marginBottom:'30px'}}>
+       
+      <Stepper sx={{
+        ".MuiStepConnector-root": {
+          display: "none"
+        },
+        
+      }} activeStep={activeStep}>
         {steps.map((label) => {
           const stepProps = {};
           return (
-            <Step  key={label} {...stepProps}>
-              <StepLabel  StepIconProps={{classes: {
-                text: {
-                  fill: 'green'
-                }
-              }}}>{label}</StepLabel>
+            <Step sx={{".MuiStepLabel-label": {
+              fontSize:'20px',
+              height:'auto',
+              fontWeight:'bold',
+              
+            }}} key={label} {...stepProps}>
+              <StepLabel>{label}</StepLabel>
             </Step>
           );
         })}
@@ -167,7 +148,7 @@ function InitialSignUpPage() {
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
           </Box>
         </>
-    </Box>
+    
         </Container>
         {activeStep === 0 ? (<SignUpForm />) : (<div></div>)}
         {activeStep === 1 ? (<AlexTest />) : (<div></div>)}
