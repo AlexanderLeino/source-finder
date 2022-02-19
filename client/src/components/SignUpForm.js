@@ -1,5 +1,6 @@
 import React from 'react'
 import Container from '@mui/material/Container'
+import { InputLabel, Select, MenuItem, Box, FormControl } from '@mui/material'
 import {useState} from 'react'
 function SignUpForm() {
   const localStorage = window.localStorage
@@ -7,12 +8,16 @@ function SignUpForm() {
   let oldEmail = localStorage.getItem('email')
   let oldPass1 = localStorage.getItem('pass1')
   let oldPass2 = localStorage.getItem('pass2')
+  let selectedSkillSet = localStorage.getItem('skillSet')
 
   const [email, settingEmail] = useState(oldEmail)
   const [userName, settingUserName] = useState(oldUser)
   const [pass1, settingPass1] = useState(oldPass1)
   const [pass2, settingPass2] = useState(oldPass2)
-  console.log(oldUser)
+  const [skillSet, setSkillSet] = useState(selectedSkillSet)
+  
+  const handleChange = e => setSkillSet(e.target.value)
+
   return (<>
   
 
@@ -27,9 +32,24 @@ function SignUpForm() {
             <input onChange={({target}) => settingPass1(target.value)}  type='password' id='pass1' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={pass1}/>
             <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Confirm Password</label>
             <input onChange={({target}) => settingPass2(target.value)}  type='password' id='pass2' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={pass2}/>
-    </form>
-    </Container>
-  
+          
+
+
+            <InputLabel id="demo-simple-select-label" style={{fontSize:'1.25rem', marginBottom: '.5rem',}}>Skill Set</InputLabel>
+                <Select
+                  id="skillSet"
+                  value={skillSet}
+                  label="Skill Set"
+                  onChange={({target}) => setSkillSet(target.value)} 
+                >
+                  <MenuItem  value={"Frontend"}>Front End</MenuItem>
+                  <MenuItem  value={"Full Stack"}>Full Stack</MenuItem>
+                  <MenuItem  value={"Backend"}>Back End</MenuItem>
+                </Select>
+      
+         
+                  </form>
+                  </Container>
   </>
   )
 }

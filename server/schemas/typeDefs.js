@@ -52,6 +52,7 @@ const typeDefs = gql`
     type SkillSet {
         _id: ID!
         name: String!
+        discipline: [String!]
     }
     
 
@@ -90,6 +91,7 @@ const typeDefs = gql`
         me(_id: ID!): User
         getOneGroup(_id: ID!) : Group
         getAllGroups : [Group]
+        getSkills(skill: String!): [SkillSet]
     }
 
     type Mutation {

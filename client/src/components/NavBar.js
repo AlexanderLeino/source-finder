@@ -17,6 +17,8 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
+import "./NavBar.css"
+import { Container } from '@mui/material'
 
 import Auth from '../utils/auth'
 
@@ -25,7 +27,7 @@ import { height } from '@mui/system';
 
 import Login from './Login'
 
-import MyAvitar from '../components/MyAvitar'
+// import MyAvitar from '../components/MyAvitar'
 
 //style for modal
 const style = {
@@ -231,8 +233,9 @@ export default function NavBar(userData) {
         <Link to={'/'}>
           <img style={{height:'75px'}} src={logo}></img>
         </Link>
-          <h2 className='title'>Source Finder</h2>
-    
+        <Container maxWidth='100%'>
+          <h2 className='title' style={{textAlign:'center', color:' #bf4578'}}>Source Finder</h2>
+        </Container>
         
         
 

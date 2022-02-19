@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Group, GroupPost, Replies } = require('../models')
+const { User, Group, GroupPost, Replies, SkillSet } = require('../models')
 
 const { signToken } = require('../utils/auth')
 
@@ -28,12 +28,19 @@ const resolvers = {
         getAllGroups: async (parent, _) => {
             const allGroups = await Group.find()
             return allGroups
+        },
+        getSkills: async (parent, skillSet) => {
+            let destructuredSkill = skillSet.skill
+            const skillBubbles = await SkillSet.find({
+                discipline: {$in: destructuredSkill}
+            })
+            return skillBubbles
         }
+        
     },
     Mutation: {
         createUser: async (parent, args) => {
             try {
-                console.log(args)
                 const user = await User.create(args)
                 const token = signToken(user)
                 return { user, token }

@@ -17,7 +17,9 @@ import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-
+import { Select } from '@mui/material'
+import SkillsButton from '../components/SkillsButton'
+import SelectTechForm from '../components/SelectTechForm'
 
 function InitialSignUpPage() {
     const steps = ['Who Are You?', 'Select Preferred Technologies', 'Account Creation Complete'];
@@ -31,11 +33,13 @@ function InitialSignUpPage() {
     const inputPass1 = document.getElementById('pass1').value
     const inputPass2 = document.getElementById('pass2').value
     const inputEmail = document.getElementById('email').value
+    const inputSkillSet = document.getElementById('skillSet').value
 
     localStorage.setItem('userName', inputUser)
     localStorage.setItem('pass1', inputPass1)
     localStorage.setItem('pass2', inputPass2)
     localStorage.setItem('email', inputEmail)
+    localStorage.setItem('skillSet', inputSkillSet )
 
    };
  
@@ -73,6 +77,7 @@ function InitialSignUpPage() {
       //}
       
     }
+    
   return (<>
   
 <Container maxWidth='100%' className='layer2 spacer2'>
@@ -113,7 +118,7 @@ function InitialSignUpPage() {
             </div>
             </Grid>
             <Grid item xs={12} sm={6}  maxWidth='fit-content'>
-                <img  src={humanCoding} alt='A picture of a male and female sitting at a computer appearing to be coding'></img>
+                <img className='pairProgramming' src={humanCoding} alt='A picture of a male and female sitting at a computer appearing to be coding'></img>
             </Grid>
          
         </Grid>
@@ -132,13 +137,52 @@ function InitialSignUpPage() {
         {steps.map((label) => {
           const stepProps = {};
           return (
-            <Step sx={{".MuiStepLabel-label": {
+            <Step  sx={{".MuiStepLabel-label": {
               fontSize:'20px',
               height:'auto',
+             
+              color:'white',
+              textAlign:'center'
+
+              },
+              ".MuiStepLabel-label.Mui-active": {
+              fontSize:'20px',
+              height:'auto',
+              fontWeight: "bold",
+              color:'white',
+              textAlign:'center'
+
+              },
+              ".MuiStepLabel-label.Mui-completed": {
+              fontSize:'20px',
+              height:'auto',
+              color:'purple',
               fontWeight:'bold',
+              textAlign:'center'
+              },
               
-            }}} key={label} {...stepProps}>
-              <StepLabel>{label}</StepLabel>
+              }} key={label} {...stepProps}>
+              <StepLabel  sx={{".MuiStepIcon-text" : {
+                fontWeight:'bold',
+                
+              },
+              ".MuiSvgIcon-root": {
+                fill:'#190b28',
+                fontSize:'28px',
+                textAlign:'center',
+                marginRight:'-2px'
+                
+              }, 
+              ".MuiSvgIcon-root.Mui-active": {
+                fill:'#fefdff3a;'
+              },
+              ".MuiSvgIcon-root.Mui-completed": {
+                fill:'purple',
+                color:'white',
+                
+              }
+
+              }}>{label}</StepLabel>
             </Step>
           );
         })}
@@ -151,14 +195,37 @@ function InitialSignUpPage() {
     
         </Container>
         {activeStep === 0 ? (<SignUpForm />) : (<div></div>)}
-        {activeStep === 1 ? (<AlexTest />) : (<div></div>)}
+        {activeStep === 1 ? (<SelectTechForm />) : (<div></div>)}
         {activeStep === 2 ? (<TestForm />) : (<div></div>)}
         
- 
-        <Box style={{display:'flex', justifyContent:'flex-end'}}>
-            <Button variant='contained' onClick={handleBack} disabled={activeStep === 0}>Back</Button>
-            {activeStep < 2 ? <Button variant='contained' onClick={handleNext} disabled={activeStep === 2}>Next</Button> : <Button variant='contained' onClick={submitForm} disabled={activeStep < 2}>Submit</Button>}
-            
+        
+        <Box style={{display:'flex', justifyContent:'center', marginTop:'2rem'}}>
+            <Button
+          
+                style={{backgroundColor:'#bf4578', fontWeight:'bold', marginRight:'20px'}}
+                className='button'
+                variant='contained'
+                onClick={handleBack}
+                disabled={activeStep === 0}
+                sx={{".MuiButton-root.Mui-disabled": {
+                  backgroundColor:'black'
+                }}}
+      
+                >Back</Button>
+                {activeStep < 2 
+            ? <Button style={{background:'#bf4578', fontWeight:'bold'}}
+                className='button'
+                variant='contained'
+                onClick={handleNext}
+                disabled={activeStep === 2}>Next
+                </Button> 
+            : <Button 
+                style={{background:'#bf4578', fontWeight:'bold'}}
+                className='button'
+                variant='contained' 
+                onClick={submitForm} 
+                disabled={activeStep < 2}>Submit
+                </Button>}
         </Box>
     </Container>
     </Container>
