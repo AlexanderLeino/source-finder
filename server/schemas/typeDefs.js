@@ -92,6 +92,7 @@ const typeDefs = gql`
         getOneGroup(_id: ID!) : Group
         getAllGroups : [Group]
         getSkills(skill: String!): [SkillSet]
+        getOneSkill(skill: String!) : SkillSet
     }
 
     type Mutation {

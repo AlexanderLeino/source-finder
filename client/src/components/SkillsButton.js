@@ -42,7 +42,10 @@ function SkillsButton({name, detectClick}) {
    
     <Button 
     variant="contained" 
-    endIcon={<BsPlus style={{fontWeight:'bold', fontSize:'10px'}} />} 
+    endIcon={<BsPlus 
+                    onChange={detectClick} 
+                    style={{fontWeight:'bold', fontSize:'10px'}} 
+            />} 
     style={{borderRadius:'25px', background:'purple', fontWeight:'bold', margin:'.5rem',  border:'1px solid black',  minWidth:'min-content', fontSize:'10px'}}
     onClick={detectClick}
     value={name}
