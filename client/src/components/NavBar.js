@@ -114,6 +114,9 @@ export default function NavBar(userData) {
   const goEditProfile = () => {
     window.location = '/edit'
   }
+  const goToProfile = () => {
+    window.location = '/profile'
+  }
   
   const menuId = 'primary-search-account-menu';
   
@@ -136,7 +139,7 @@ export default function NavBar(userData) {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={goToProfile}>Profile</MenuItem>
         <MenuItem onClick={goEditProfile}>Edit Profile</MenuItem>
         <MenuItem onClick={handleMenuClose}>My Groups</MenuItem>
         <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
@@ -212,7 +215,7 @@ export default function NavBar(userData) {
           color="inherit"
         >
           {/* <AccountCircle /> */}
-          <MyAvitar />
+          <MyAvitar isLarge ={false} />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -259,7 +262,7 @@ export default function NavBar(userData) {
               color="inherit"
             >
               {/* <AccountCircle /> */}
-              <MyAvitar />
+              <MyAvitar isLarge={false}/>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

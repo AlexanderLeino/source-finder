@@ -8,7 +8,7 @@ import { minWidth } from '@mui/system'
 
 
 
-function MyAvitar(){
+function MyAvitar({isLarge}){
 
     const [profilePic, setProfilePic] = useState("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg")
     let meData = Auth.getProfile()
@@ -30,7 +30,12 @@ function MyAvitar(){
     
     return(
         <>
-        <img src={profilePic} style={{height: '40px', width: 'auto', minWidth: '40px', borderRadius: '25px'}} />
+        {isLarge ? (
+            <img src={profilePic} />
+        ): (
+            <img src={profilePic} style={{height: '40px', width: 'auto', minWidth: '40px', borderRadius: '25px'}} />
+        )}
+        
         </>
 
     )
