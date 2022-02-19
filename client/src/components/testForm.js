@@ -3,26 +3,48 @@ import Container from '@mui/material/Container'
 import {useState} from 'react'
 function TestForm() {
   const localStorage = window.localStorage
-  let oldUser = localStorage.getItem('userName')
-  const [email, settingEmail] = useState('')
-  const [userName, settingUserName] = useState(oldUser)
-  const [pass1, settingPass1] = useState('')
-  const [pass2, settingPass2] = useState('')
-  console.log(oldUser)
+  let oldFirst = localStorage.getItem('firstName')
+  let oldLast = localStorage.getItem('lastName')
+  let oldAbout = localStorage.getItem('aboutMe')
+
+  let oldGit = localStorage.getItem('gitHub')
+  let oldTwitter = localStorage.getItem('twitter')
+  let oldHash = localStorage.getItem('hashNode')
+  let oldLinkedIn = localStorage.getItem('linkedIn')
+
+
+  const [firstName, settingFirstName] = useState(oldFirst)
+  const [lastName, settingLastName] = useState(oldLast)
+  const [aboutMe, settingAboutMe] = useState(oldAbout)
+
+ 
+  const [githubLink, settingGithubLink] = useState(oldGit)
+  const [twitterLink, settingTwitterLink] = useState(oldTwitter)
+  const [hashNodeLink, settingHashNodeLink] = useState(oldHash)
+  const [linkedinLink, settingLinkedinLink] = useState(oldLinkedIn)
+
   return (<>
   
 
   
     <Container maxWidth='sm' style={{padding:'1.25rem', borderRadius:'25px', background:'white', boxShadow:'5px 10px 18px  black', border: '1px solid black'}}>
     <form style={{display:'flex', flexDirection:'column'}}>
-        <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Email:</label>
-            <input type='email' id='email' style={{alignText:'left', marginBottom:'1rem', height:'1.50rem'}}/>
-            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Username:</label>
-            <input onChange={({target}) => settingUserName(target.value)} placeholder={userName} type='text' id='username' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}}/>
-            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Password:</label>
-            <input type='password' id='pass1' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}}/>
-            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Confirm Password</label>
-            <input type='password' id='pass2' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}}/>
+            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>First Name:</label>
+            <input onChange={({target}) => settingFirstName(target.value)} placeholder={firstName} type='text' id='firstName' style={{alignText:'left', marginBottom:'1rem', height:'1.50rem'}} value={firstName}/>
+            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Last Name:</label>
+            <input onChange={({target}) => settingLastName(target.value)} placeholder={lastName} type='text' id='lastName' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={lastName}/>
+            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>About Me:</label>
+            <textarea onChange={({target}) => settingAboutMe(target.value)} placeholder={aboutMe} type='text' id='aboutMe' style={{alignText:'left', marginBottom:'1rem',  height:'5rem'}} value={aboutMe}> </textarea>
+            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Link Your Github</label>
+            <input onChange={({target}) => settingGithubLink(target.value)} placeholder={githubLink} type='text' id='gitHub' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={githubLink}/>
+            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Link Your Twitter</label>
+            <input onChange={({target}) => settingTwitterLink(target.value)} placeholder={twitterLink} type='text' id='twitter' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={twitterLink}/>
+            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Link Your HashNode</label>
+            <input onChange={({target}) => settingHashNodeLink(target.value)} placeholder={hashNodeLink} type='text' id='hashNode' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={hashNodeLink}/>
+            <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Link Your LinkedIn</label>
+            <input onChange={({target}) => settingLinkedinLink(target.value)} placeholder={linkedinLink} type='text' id='linkedIn' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={linkedinLink}/>
+
+            
     </form>
     </Container>
   

@@ -12,8 +12,8 @@ function MyAvitar({isLarge}){
 
     const [profilePic, setProfilePic] = useState("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg")
     let meData = Auth.getProfile()
-    console.log(meData.data.id_id)
-    if (meData != null){
+    console.log(meData.data.me)
+    if (meData.data.me != null){
         const { loading, data, error } = useQuery(GET_ME, {
             variables: {id: meData.data._id}
         })

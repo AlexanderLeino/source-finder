@@ -26,26 +26,55 @@ function InitialSignUpPage() {
     const [activeStep, setActiveStep] = useState(0);
     const localStorage = window.localStorage
     const [createUser] = useMutation(CREATE_USER);
-    
+    const userTech = []
+   
     const handleNext = () => {
+      if (activeStep === 0){
+      const inputUser = document.getElementById('username').value
+      const inputPass1 = document.getElementById('pass1').value
+      const inputPass2 = document.getElementById('pass2').value
+      const inputEmail = document.getElementById('email').value
+      const inputSkillSet = document.getElementById('skillSet').innerHTML
+
+      localStorage.setItem('userName', inputUser)
+      localStorage.setItem('pass1', inputPass1)
+      localStorage.setItem('pass2', inputPass2)
+      localStorage.setItem('email', inputEmail)
+      localStorage.setItem('skillSet', inputSkillSet )
+      
+      } 
+      else if(activeStep === 1){
+        for (let i = 0; i < 10; i++){
+          if (localStorage.getItem('tech' + i) != null){
+            userTech.push(localStorage.getItem('tech' + i))
+          }
+        }
+      }
+    console.log(userTech)
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    const inputUser = document.getElementById('username').value
-    const inputPass1 = document.getElementById('pass1').value
-    const inputPass2 = document.getElementById('pass2').value
-    const inputEmail = document.getElementById('email').value
-    const inputSkillSet = document.getElementById('skillSet').value
-
-    localStorage.setItem('userName', inputUser)
-    localStorage.setItem('pass1', inputPass1)
-    localStorage.setItem('pass2', inputPass2)
-    localStorage.setItem('email', inputEmail)
-    localStorage.setItem('skillSet', inputSkillSet )
-
    };
  
    const handleBack = () => {
-     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+     console.log(activeStep)
      //localStorage.removeItem('userName')
+     if (activeStep === 2){
+      const firstName = document.getElementById('firstName').value
+      const lastName = document.getElementById('lastName').value
+      const aboutMe = document.getElementById('aboutMe').value
+      const gitHub = document.getElementById('gitHub').value
+      const twitter = document.getElementById('twitter').value
+      const hashNode = document.getElementById('hashNode').value
+      const linkedIn = document.getElementById('linkedIn').value
+      localStorage.setItem('firstName', firstName)
+      localStorage.setItem('lastName', lastName)
+      localStorage.setItem('aboutMe', aboutMe)
+      localStorage.setItem('gitHub', gitHub)
+      localStorage.setItem('twitter', twitter)
+      localStorage.setItem('hashNode', hashNode)
+      localStorage.setItem('linkedIn', linkedIn)
+
+     }
+     setActiveStep((prevActiveStep) => prevActiveStep - 1);
    };
     
 

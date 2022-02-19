@@ -15,6 +15,8 @@ function SignUpForm() {
   const [pass1, settingPass1] = useState(oldPass1)
   const [pass2, settingPass2] = useState(oldPass2)
   const [skillSet, setSkillSet] = useState(selectedSkillSet)
+
+
   
   const handleChange = e => setSkillSet(e.target.value)
 
@@ -42,9 +44,9 @@ function SignUpForm() {
                   label="Skill Set"
                   onChange={({target}) => setSkillSet(target.value)} 
                 >
-                  <MenuItem  value={"Frontend"}>Front End</MenuItem>
+                  <MenuItem  value={"Front End"}>Front End</MenuItem>
                   <MenuItem  value={"Full Stack"}>Full Stack</MenuItem>
-                  <MenuItem  value={"Backend"}>Back End</MenuItem>
+                  <MenuItem  value={"Back End"}>Back End</MenuItem>
                 </Select>
       
          
