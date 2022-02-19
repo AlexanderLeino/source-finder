@@ -239,114 +239,114 @@ const skillData = [
     {
         _id: skillId[0],
         name: 'HTML',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
 
     },
     {
         _id: skillId[1],
         name: 'CSS5',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
 
     },
     {
         _id: skillId[2],
         name: 'JavaScript',
-        discipline: ['FullStack', 'FrontEnd', 'BackEnd']
+        discipline: ['Full Stack', 'Front End', 'Back End']
     },
     {
         _id: skillId[3],
         name: 'MySql',
-        discipline: ['BackEnd', 'FullStack']
+        discipline: ['Back End', 'Full Stack']
 
     },
     {
         _id: skillId[4],
         name: 'React',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
 
     },
     {
         _id: skillId[5],
         name: 'Angular',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
 
     },
     {
         _id: skillId[6],
         name: 'Mongodb',
-        discipline: ['FullStack','BackEnd']
+        discipline: ['Full Stack','Back End']
 
     },
     {
         _id: skillId[7],
         name: 'Mongoose',
-        discipline: ['FullStack','BackEnd']
+        discipline: ['Full Stack','Back End']
 
     },
     {
         _id: skillId[8],
         name: 'jQuery',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
     },
     {
         _id: skillId[9],
         name: 'Sequelize',
-        discipline: ['FullStack','BackEnd']
+        discipline: ['Full Stack','Back End']
     },
     {
         _id: skillId[10],
         name: 'Unity',
-        discipline: ['FullStack', 'FrontEnd', 'BackEnd']
+        discipline: ['Full Stack', 'Front End', 'Back End']
     },
     {
         _id: skillId[11],
         name: 'C++',
-        discipline: ['FullStack', 'FrontEnd', 'BackEnd']
+        discipline: ['Full Stack', 'Front End', 'Back End']
     },
     {
         _id: skillId[12],
         name: 'C#',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
     },
     {
         _id: skillId[13],
         name: 'Remix',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
     },
     {
         _id: skillId[14],
         name: 'Unreal Engine',
-        discipline: ['FullStack', 'FrontEnd', 'BackEnd']
+        discipline: ['Full Stack', 'Front End', 'Back End']
     },
     {
         _id: skillId[15],
         name: 'GraphQL',
-        discipline: ['FullStack', 'BackEnd']
+        discipline: ['Full Stack', 'Back End']
     },
     {
         _id: skillId[16],
         name: 'C',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
     },
     {
         _id: skillId[17],
         name: 'Java',
-        discipline: ['FullStack', 'FrontEnd', 'BackEnd']
+        discipline: ['Full Stack', 'Front End', 'Back End']
     },
     {
         _id: skillId[18],
         name: 'Figma',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
     },
     {
         _id: skillId[19],
         name: 'BootStrap',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
     },
     {
         _id: skillId[20],
         name: 'Material Ui',
-        discipline: ['FullStack', 'FrontEnd']
+        discipline: ['Full Stack', 'Front End']
     },
 
 

@@ -39,7 +39,7 @@ function SkillsButton({name}) {
   }
   return (
     //{wasPressed ? () : ()}
-    <Button variant="contained" endIcon={<BsPlus style={{fontWeight:'bold'}} />} style={{borderRadius:'25px', background:'purple', fontWeight:'bold', width:'33%', margin:'.5rem',  border:'1px solid black', maxWidth:'min-content'}}
+    <Button variant="contained" endIcon={<BsPlus style={{fontWeight:'bold'}} />} style={{borderRadius:'25px', background:'purple', fontWeight:'bold', width:'33%', margin:'.5rem',  border:'1px solid black', maxWidth:'min-content', minWidth:'min-content'}}
     onClick={Pressed}>
   {name}
 </Button>

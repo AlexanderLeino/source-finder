@@ -36,7 +36,6 @@ export const GET_ME = gql `
 export const Get_Skills = gql`
     query GetSkills($skill: String!){
         getSkills(skill: $skill){
-            _id
             name
         }
     }

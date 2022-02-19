@@ -8,7 +8,7 @@ const SkillsSchema = new Schema({
     },
     discipline:[{
         type:'String',
-        enum: ['FrontEnd', 'FullStack', 'BackEnd' ],
+        enum: ['Front End', 'Full Stack', 'Back End' ],
         required: true
     }]
 })
