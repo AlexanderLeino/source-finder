@@ -35,6 +35,15 @@ const resolvers = {
                 discipline: {$in: destructuredSkill}
             })
             return skillBubbles
+        },
+        getOneSkill: async (parent, skillName) => {
+           
+            const { skill } = skillName
+            console.log(typeof skill)
+
+            let foundSkill = SkillSet.findOne({name:skill})
+            console.log(foundSkill)
+            return foundSkill
         }
         
     },
@@ -94,7 +103,8 @@ const resolvers = {
                 console.log(err)
                 return err
             }
-        }
+        },
+       
     }
 }
 
