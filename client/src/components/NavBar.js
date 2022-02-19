@@ -27,7 +27,7 @@ import { height } from '@mui/system';
 
 import Login from './Login'
 
-// import MyAvitar from '../components/MyAvitar'
+import MyAvitar from '../components/MyAvitar'
 
 //style for modal
 const style = {
