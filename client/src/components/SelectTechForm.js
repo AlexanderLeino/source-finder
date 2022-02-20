@@ -9,6 +9,7 @@ function SelectTechForm() {
   const mySkills = localStorage.getItem('skillSet')
 
   const [codingLanguages, setCodingLanguages] = useState([])
+  const [selectedLanguages, setSelectedLanguages] = useState([])
 
   const { loading, error, data } = useQuery(Get_Skills, {
     variables: {skill: mySkills }
@@ -22,14 +23,16 @@ function SelectTechForm() {
   },[loading])
 
   useEffect(() => {
-
-  })
+    console.log(selectedLanguages)
+  },[selectedLanguages])
 
 const buttonClick = (e) =>{
+  if(e.target.value === undefined) return
   removeButton(e.target.value)
 }
 
 const removeButton = (nameOfLanguage) => {
+  setSelectedLanguages([nameOfLanguage, ...selectedLanguages])
   let filteredList =  codingLanguages.filter((name) => {
   if(name != nameOfLanguage){
     return true
