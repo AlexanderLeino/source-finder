@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import SkillsButton from './SkillsButton'
 import { Container, Typography, Box} from '@mui/material'
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation} from '@apollo/client'
 import { Get_Skills } from '../utils/queries'
-
+import Auth from '../utils/auth'
+import { UPDATE_USER_SKILLS } from '../utils/mutations'
 function SelectTechForm() {
-
+  
   const mySkills = localStorage.getItem('skillSet')
+  const [updateUserSkills] = useMutation(UPDATE_USER_SKILLS);
+
+  const token = Auth.getToken()
+  const user = Auth.getProfile(token)
+  console.log(user)
 
   const [codingLanguages, setCodingLanguages] = useState([])
+  const [selectedLanguages, setSelectedLanguages] = useState([])
 
   const { loading, error, data } = useQuery(Get_Skills, {
     variables: {skill: mySkills }
   })
 
+console.log(updateUserSkills)
+
   const skillData = data ? data.getSkills : []
+
 
 
   useEffect(() => {
@@ -22,14 +32,17 @@ function SelectTechForm() {
   },[loading])
 
   useEffect(() => {
-
-  })
+    
+  },[selectedLanguages])
 
 const buttonClick = (e) =>{
+  //Fixes issue where if user clicks on the "+" on the button it wont push undefined.
+  if(e.target.value === undefined) return
   removeButton(e.target.value)
 }
 
 const removeButton = (nameOfLanguage) => {
+  setSelectedLanguages([nameOfLanguage, ...selectedLanguages])
   let filteredList =  codingLanguages.filter((name) => {
   if(name != nameOfLanguage){
     return true
