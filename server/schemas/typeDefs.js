@@ -100,6 +100,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         updateUser(user: UpdatedUser): User
         createGroup(groupName: String!, techNeeded: [String], profilePic: String, aboutGroup: String!, category: String!, adminId: String!): Group
+        updateUserSkills(userId: ID!, skill: ID!) : User
     }
 `
 module.exports = typeDefs

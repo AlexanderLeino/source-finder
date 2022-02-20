@@ -37,12 +37,9 @@ const resolvers = {
             return skillBubbles
         },
         getOneSkill: async (parent, skillName) => {
-           
             const { skill } = skillName
-            console.log(typeof skill)
-
             let foundSkill = SkillSet.findOne({name:skill})
-            console.log(foundSkill)
+
             return foundSkill
         }
         
@@ -104,6 +101,20 @@ const resolvers = {
                 return err
             }
         },
+
+        updateUserSkills: async (parent, {userId, skill}) => {
+            try {
+                const updatedUser = await User.findByIdAndUpdate(userId,{
+                    $push: { skills: skill }
+                }).populate([{
+                    model: 'SkillSet',
+                    path: 'skills'
+                }])
+                return updatedUser
+            } catch(err){
+                console.log(err)
+            }
+        }
        
     }
 }
