@@ -38,7 +38,7 @@ function SignUpForm() {
           ...userData
         }
       })
-      Auth.log(token)
+      Auth.login(token)
       
     } catch(err){
       console.log(err)
@@ -74,7 +74,13 @@ function SignUpForm() {
                   <MenuItem  value={"Back End"}>Back End</MenuItem>
                 </Select>
       
-                  <Button variant='contained' type='submit'  style={{borderRadius:'25px', background:'purple', fontWeight:'bold', margin:'.5rem',  border:'1px solid black',  minWidth:'min-content', fontSize:'10px'}}> Create Account</Button>
+                  <Button 
+                    variant='contained'
+                    type='submit'  
+                    style={{borderRadius:'25px', background:'purple', fontWeight:'bold', margin:'.5rem',  border:'1px solid black',  minWidth:'min-content', fontSize:'10px'}}
+                    > Create Account
+                  </Button>
+
                     </form>
                 <Container maxWidth='xs' style={{display: 'flex', justifyContent:'center', marginTop:'1rem'}}>
                    

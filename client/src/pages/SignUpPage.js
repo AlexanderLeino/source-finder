@@ -16,6 +16,7 @@ import { List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Link } from 'react-router-dom'
 
 import { Select } from '@mui/material'
 import SkillsButton from '../components/SkillsButton'
@@ -79,9 +80,6 @@ function InitialSignUpPage() {
     
 
     const submitForm = async () => {
-      
-      
-
      // if (inputPass1 === inputPass2){
           const userData = {
             userName: localStorage.getItem('userName'),
@@ -224,7 +222,7 @@ function InitialSignUpPage() {
     
         </Container>
         {activeStep === 0 ? (<SignUpForm />) : (<div></div>)}
-        {activeStep === 1 ? (<SelectTechForm />) : (<div></div>)}
+        {activeStep === 1 ? (<SelectTechForm activeStep={activeStep} />) : (<div></div>)}
         {activeStep === 2 ? (<TestForm />) : (<div></div>)}
         
         
@@ -247,7 +245,7 @@ function InitialSignUpPage() {
                 variant='contained'
                 onClick={handleNext}
                 disabled={activeStep === 2}>Next
-                </Button> 
+                </Button>
             : <Button 
                 style={{background:'#bf4578', fontWeight:'bold'}}
                 className='button'
