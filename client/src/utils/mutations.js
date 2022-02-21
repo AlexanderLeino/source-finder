@@ -41,7 +41,7 @@ export const UPDATE_USER = gql`
 `
 export const UPDATE_USER_SKILLS = gql`
     mutation UpdateUserSkills($userId: ID!, $skill: [ID!]){
-        updateUserSkills(userId: userId, skill: skill){
+        updateUserSkills(userId: $userId, skill: $skill){
             userName
             skills {
                 _id

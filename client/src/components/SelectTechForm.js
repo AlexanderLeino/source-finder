@@ -35,10 +35,36 @@ console.log(updateUserSkills)
     
   },[selectedLanguages])
 
+
+
 const buttonClick = (e) =>{
+  function getId(skill){
+    return skill.name === e.target.value
+  }
+  const thisId =  skillData.find(getId)
+  console.log(thisId)
   //Fixes issue where if user clicks on the "+" on the button it wont push undefined.
   if(e.target.value === undefined) return
-  removeButton(e.target.value)
+  
+  if (e.target.style.background === 'purple'){
+    e.target.style.background = 'blue'
+
+    for (let i = 0; i < 21; i++){
+      if (localStorage.getItem('tech' + i) === null){
+        localStorage.setItem('tech' + i, thisId._id)
+        break
+      }
+    }
+  }
+  else{
+    e.target.style.background = 'purple'
+    for (let i = 0; i < 21; i++){
+      if (localStorage.getItem('tech' + i) != null && localStorage.getItem('tech' + i) === thisId._id){
+        localStorage.removeItem('tech' + i)
+        break
+      }
+    }
+  }
 }
 
 const removeButton = (nameOfLanguage) => {
