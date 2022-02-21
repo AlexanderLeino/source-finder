@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '@mui/material/Container'
 import { InputLabel, Select, MenuItem, Box, FormControl } from '@mui/material'
 import {useState} from 'react'
@@ -8,6 +8,16 @@ import { Button } from '@mui/material'
 import Auth from '../utils/auth'
 
 function SignUpForm() {
+  
+  const [userData, setUserData] = useState({
+    userName: "",
+    password: "",
+    passwordConfirmation: "",
+    email: "",
+    skillSet: ""
+  })
+
+
   const localStorage = window.localStorage
   let oldUser = localStorage.getItem('userName')
   let oldEmail = localStorage.getItem('email')
@@ -15,77 +25,43 @@ function SignUpForm() {
   let oldPass2 = localStorage.getItem('pass2')
   let selectedSkillSet = localStorage.getItem('skillSet')
 
-  const [email, settingEmail] = useState(oldEmail)
-  const [userName, settingUserName] = useState(oldUser)
-  const [pass1, settingPass1] = useState(oldPass1)
-  const [pass2, settingPass2] = useState(oldPass2)
-  const [skillSet, setSkillSet] = useState(selectedSkillSet)
-
-  const [createUser] = useMutation(CREATE_USER)
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const userData = {
-      userName: userName,
-      password: pass1, 
-      email: email
-    }
-
-    try {
-      const { data: { createUser: { token } } } = await createUser({
-        variables: {
-          ...userData
-        }
+  const handleChange = (e) => {
+      const value = e.target.value
+      setUserData({
+        ...userData,
+        [e.target.name]: value
       })
-      Auth.login(token)
-      
-    } catch(err){
-      console.log(err)
-    }
   }
- 
-
-
   return (<>
   
 
   
     <Container maxWidth='sm' style={{padding:'1.25rem', borderRadius:'25px', background:'white', boxShadow:'5px 10px 18px  black', border: '1px solid black'}}>
-    <form style={{display:'flex', flexDirection:'column'}} onSubmit={handleSubmit}>
+    <form style={{display:'flex', flexDirection:'column'}}>
         <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Email:</label>
-            <input onChange={({target}) => settingEmail(target.value)} placeholder={email} type='email' id='email' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={email}/>
+            <input onChange={handleChange} type='email' name='email' id='email' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={userData.email}/>
             <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Username:</label>
-            <input onChange={({target}) => settingUserName(target.value)} placeholder={userName} type='text' id='username' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={userName}/>
+            <input onChange={handleChange}  type='text' id='username' name='userName' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={userData.userName}/>
             <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Password:</label>
-            <input onChange={({target}) => settingPass1(target.value)}  type='password' id='pass1' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={pass1}/>
+            <input onChange={handleChange}  type='password' id='pass1' name='password' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={userData.password}/>
             <label style={{fontSize:'1.25rem', marginBottom: '.5rem'}}>Confirm Password</label>
-            <input onChange={({target}) => settingPass2(target.value)}  type='password' id='pass2' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={pass2}/>
+            <input onChange={handleChange}  type='password' id='pass2' name='passwordConfirmation' style={{alignText:'left', marginBottom:'1rem',  height:'1.50rem'}} value={userData.passwordConfirmation}/>
 
             <InputLabel id="demo-simple-select-label" style={{fontSize:'1.25rem', marginBottom: '.5rem',}}>Skill Set</InputLabel>
                 <Select
                   id="skillSet"
-                  value={skillSet}
+                  value={userData.skillSet}
                   label="Skill Set"
-                  onChange={({target}) => setSkillSet(target.value)} 
+                  name='skillSet'
+                  onChange={handleChange} 
                 >
                   <MenuItem  value={"Front End"}>Front End</MenuItem>
                   <MenuItem  value={"Full Stack"}>Full Stack</MenuItem>
                   <MenuItem  value={"Back End"}>Back End</MenuItem>
                 </Select>
-      
-                  <Button 
-                    variant='contained'
-                    type='submit'  
-                    style={{borderRadius:'25px', background:'purple', fontWeight:'bold', margin:'.5rem',  border:'1px solid black',  minWidth:'min-content', fontSize:'10px'}}
-                    > Create Account
-                  </Button>
-
-                    </form>
-                <Container maxWidth='xs' style={{display: 'flex', justifyContent:'center', marginTop:'1rem'}}>
-                   
+      </form>        
                     </Container>
-                </Container>
+           
   </>
   )
 }

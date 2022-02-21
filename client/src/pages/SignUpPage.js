@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, createContext, useContext} from 'react'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -16,11 +16,9 @@ import { List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { Link } from 'react-router-dom'
-
-import { Select } from '@mui/material'
-import SkillsButton from '../components/SkillsButton'
 import SelectTechForm from '../components/SelectTechForm'
+
+const UserContext = createContext()
 
 function InitialSignUpPage() {
     const steps = ['Who Are You?', 'Select Preferred Technologies', 'Account Creation Complete'];
@@ -28,7 +26,7 @@ function InitialSignUpPage() {
     const localStorage = window.localStorage
     const [createUser] = useMutation(CREATE_USER);
     const userTech = []
-   
+
     const handleNext = () => {
       if (activeStep === 0){
       const inputUser = document.getElementById('username').value
@@ -79,31 +77,7 @@ function InitialSignUpPage() {
    };
     
 
-    const submitForm = async () => {
-     // if (inputPass1 === inputPass2){
-          const userData = {
-            userName: localStorage.getItem('userName'),
-            email: localStorage.getItem('email'),
-            password: localStorage.getItem('pass1')
-          }
-        console.log(userData)
-        try {
-    
-            console.log(userData)
-            const { data: { createUser: { token } } } = await createUser({
-                variables: {
-                    ...userData
-                }
-            })
-            Auth.login(token)
-    
-        }
-        catch (err) {
-            console.log(err)
-        }
-      //}
-      
-    }
+
     
   return (<>
   
@@ -221,10 +195,11 @@ function InitialSignUpPage() {
         </>
     
         </Container>
+    
         {activeStep === 0 ? (<SignUpForm />) : (<div></div>)}
         {activeStep === 1 ? (<SelectTechForm activeStep={activeStep} />) : (<div></div>)}
         {activeStep === 2 ? (<TestForm />) : (<div></div>)}
-        
+
         
         <Box style={{display:'flex', justifyContent:'center', marginTop:'2rem'}}>
             <Button

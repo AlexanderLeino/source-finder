@@ -16,6 +16,7 @@ function SelectTechForm() {
 
   const [codingLanguages, setCodingLanguages] = useState([])
   const [selectedLanguages, setSelectedLanguages] = useState([])
+  console.log(selectedLanguages)
 
   const { loading, error, data } = useQuery(Get_Skills, {
     variables: {skill: mySkills }
