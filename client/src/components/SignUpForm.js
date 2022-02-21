@@ -74,17 +74,15 @@ function SignUpForm() {
                   <MenuItem  value={"Back End"}>Back End</MenuItem>
                 </Select>
       
-                  <Button 
+                  {/* <Button 
                     variant='contained'
                     type='submit'  
                     style={{borderRadius:'25px', background:'purple', fontWeight:'bold', margin:'.5rem',  border:'1px solid black',  minWidth:'min-content', fontSize:'10px'}}
                     > Create Account
-                  </Button>
+                  </Button> */}
 
                     </form>
-                <Container maxWidth='xs' style={{display: 'flex', justifyContent:'center', marginTop:'1rem'}}>
-                   
-                    </Container>
+               
                 </Container>
   </>
   )

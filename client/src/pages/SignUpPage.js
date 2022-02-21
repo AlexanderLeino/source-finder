@@ -15,6 +15,8 @@ import { AiFillStar } from 'react-icons/ai'
 import { List, ListItem, ListItemIcon, ListItemText} from '@mui/material'
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
+import { UPDATE_USER_SKILLS } from '../utils/mutations'
+import {UPDATE_USER} from '../utils/mutations'
 import Auth from '../utils/auth';
 import { Link } from 'react-router-dom'
 
@@ -27,6 +29,8 @@ function InitialSignUpPage() {
     const [activeStep, setActiveStep] = useState(0);
     const localStorage = window.localStorage
     const [createUser] = useMutation(CREATE_USER);
+    const [updateUserSkills] = useMutation(UPDATE_USER_SKILLS);
+    const [updateUser] = useMutation(UPDATE_USER)
     const userTech = []
    
     const handleNext = () => {
@@ -80,29 +84,110 @@ function InitialSignUpPage() {
     
 
     const submitForm = async () => {
-     // if (inputPass1 === inputPass2){
-          const userData = {
-            userName: localStorage.getItem('userName'),
-            email: localStorage.getItem('email'),
-            password: localStorage.getItem('pass1')
-          }
-        console.log(userData)
+     
+
+
+      // ----Frst Form----
+      let oldUser = localStorage.getItem('userName')
+      let oldEmail = localStorage.getItem('email')
+      let oldPass1 = localStorage.getItem('pass1')
+      let oldPass2 = localStorage.getItem('pass2')
+      let selectedSkillSet = localStorage.getItem('skillSet')
+
+
+      // ---Second Page----
+      const selectedTech = []
+      for (let i = 0; i < 21; i++){
+        if (localStorage.getItem('tech' + i) != null){
+          selectedTech.push(localStorage.getItem('tech' + i))
+        }
+      }
+
+
+      //---- Last Page -----
+      let oldFirst = document.getElementById('firstName').value
+      let oldLast = document.getElementById('lastName').value
+      let oldAbout = document.getElementById('aboutMe').value
+
+      let oldGit = document.getElementById('gitHub').value
+      let oldTwitter = document.getElementById('twitter').value
+      let oldHash = document.getElementById('hashNode').value
+      let oldLinkedIn = document.getElementById('linkedIn').value
+
+
+      const userData = {
+        userName: oldUser,
+        email: oldEmail,
+        password: oldPass1
+      }
+
+      
+
+      if (oldPass1 === oldPass2){
+        
+      
         try {
     
-            console.log(userData)
-            const { data: { createUser: { token } } } = await createUser({
+          console.log(userData)
+          const { data: { createUser: { token } } } = await createUser({
+              variables: {
+                  ...userData
+              }
+          })
+          Auth.login(token)
+          
+          if (token){
+            const usersId = Auth.getProfile()
+            console.log(usersId.data._id)
+            try {
+              const updatedTech = await updateUserSkills({
                 variables: {
-                    ...userData
+                  userId: usersId.data._id,
+                  skill: selectedTech
                 }
-            })
-            Auth.login(token)
-    
+              })
+
+              if(updatedTech){
+                try{
+                  const userExtraData = {
+                    
+                  }
+                  const {data: theUpdatedUser} = await updateUser({
+                    variables: {
+                      user: {
+                        _id: usersId.data._id,
+                        email: usersId.data.email,
+                        userName: usersId.data.userName,
+                        firstName: oldFirst,
+                        lastName: oldLast,
+                        aboutMe: oldAbout,
+                        GithubLink: oldGit,
+                        TwitterLink: oldTwitter,
+                        hashNodeLink: oldHash,
+                        linkedinLink: oldLinkedIn,
+                        profilePic: localStorage.getItem('profilePic')
+                      }
+                    }
+                  })
+                  if (theUpdatedUser){
+                    window.location = '/'
+                  }
+                }
+                catch(err){
+                  console.log(err)
+                }
+              }
+            }
+            catch(err){
+              console.log(err)
+            }
+          }
         }
         catch (err) {
             console.log(err)
         }
-      //}
-      
+     }
+
     }
     
   return (<>
