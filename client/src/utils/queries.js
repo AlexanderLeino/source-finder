@@ -32,6 +32,7 @@ export const GET_ME = gql `
             linkedinLink
             groupMemberOf {
                 _id
+                groupName
             }
         }
     }
@@ -42,6 +43,30 @@ export const Get_Skills = gql`
             _id
             name
             
+        }
+    }
+`
+
+export const GET_ONE_GROUP = gql`
+    query GetOneGroup($id: ID!){
+        getOneGroup(_id: $id){
+            groupName
+            techNeeded {
+                _id
+                name
+            }
+            aboutGroup
+            category
+            profilePic
+            adminId
+            groupMembers{
+                userName
+                profilePic
+                GithubLink
+                TwitterLink
+                hashNodeLink
+                linkedinLink
+            }
         }
     }
 `
