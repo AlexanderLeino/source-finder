@@ -27,7 +27,7 @@ const db = app.firestore()
 function QMakeGroup(){
     const [groupName, setGroupName] = useState('');
     const [aboutGroup, setAboutGroup] = useState('');
-    const [profilePic, setProfilePic] = useState('https://firebasestorage.googleapis.com/v0/b/sourcefinder-969bf.appspot.com/o/images%2FScreenshot%202021-08-03%20085032.png?alt=media&token=7453ed7c-aead-4fe9-b0d0-f9cca055a6f4');
+    const [profilePic, setProfilePic] = useState('https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg');
     const [image, setImage] = useState(null);
     const thisUser = Auth.getProfile()
     const [createGroup] = useMutation(CREATE_GROUP)
