@@ -7,7 +7,8 @@ const Group = new Schema({
         unique: true
     },
     techNeeded: [{
-        type: String
+        type: Schema.Types.ObjectId,
+        ref:'SkillSet'
     }],
     aboutGroup: {
         type: String

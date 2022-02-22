@@ -21,6 +21,10 @@ const resolvers = {
             const group = await Group.findOne(groupName).populate([{
                 path: 'groupMembers',
                 model: 'User'
+            },
+            {
+                path: 'techNeeded',
+                model:'SkillSet'
             }
         ])
             return group

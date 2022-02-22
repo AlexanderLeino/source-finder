@@ -14,6 +14,7 @@ import GroupPage from "./pages/GroupPage";
 import NavBar from './components/NavBar'
 import Footer from "./components/Footer";
 import ProfilePage from './pages/ProfilePage'
+import Explore from './pages/Explore'
 
 
 const client = new ApolloClient({
@@ -33,8 +34,9 @@ function App() {
         <Route path='/edit' element={<EditProfile />}></Route>
         <Route path="/signUp" element={<SignUpPage/>}></Route>
         <Route path='/makeGroup' element={<QMakeGroup />}></Route>
-        <Route path="group" element={<GroupPage />}></Route>
+        <Route path="/group" element={<GroupPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
+        <Route path="/explore" element={<Explore />}></Route>
       </Routes>
     </Router>  
     </ApolloProvider>

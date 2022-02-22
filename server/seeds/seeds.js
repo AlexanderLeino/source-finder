@@ -125,7 +125,7 @@ const groupData = [
     {   
         _id: groupId[0],
         groupName: 'SourceFinder',
-        techNeeded: ['Javascript', 'MongoDb,', 'Web3', 'BlockChain'],
+        techNeeded: [skillId[0], skillId[2], skillId[0] ],
         aboutGroup: 'This group is pretty new and we are looking for a lot of different personal please apply within.',
         category: 'Web Development',
         adminId: '1',
@@ -134,7 +134,7 @@ const groupData = [
     {   
         _id: groupId[1],
         groupName: 'Artists Are Us',
-        techNeeded: ['GraphQL'],
+        techNeeded: [skillId[5]],
         aboutGroup: 'This group is all about finding the best artists in LA.',
         category: 'Web Development',
         adminId: '2',
@@ -142,7 +142,7 @@ const groupData = [
     {
         _id: groupId[2],
         groupName: 'Football Fanatics',
-        techNeeded: ['Material UI'],
+        techNeeded: [skillId[1],skillId[2], skillId[5]],
         aboutGroup: 'Looking for people that are passionate about footaball.',
         category: 'Web Development',
         adminId: '3',
@@ -151,7 +151,7 @@ const groupData = [
     {
         _id: groupId[3],
         groupName: 'The CSS Freaks',
-        techNeeded: ['Bootstrap'],
+        techNeeded: [skillId[2]],
         aboutGroup: 'We are looking for someone who is a data junkie but who isnt afraid to get freaky in the sheets if you know what we are saying',
         category: 'Web Development',
         adminId:'4',
@@ -160,7 +160,7 @@ const groupData = [
     {
         _id: groupId[4],
         groupName: 'Pokemon Coders',
-        techNeeded: ['MongoDb', 'Mongoose'],
+        techNeeded: [skillId[7]],
         aboutGroup: 'We are looking for someone that loves pokemon as much as we do',
         category: 'Database',
         adminId: '5',

@@ -28,7 +28,7 @@ const typeDefs = gql`
     type Group {
         _id: ID!
         groupName: String
-        techNeeded: [String]
+        techNeeded: [SkillSet]
         profilePic: String
         aboutGroup: String
         category: String
