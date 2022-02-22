@@ -21,7 +21,7 @@ function SelectTechForm() {
     variables: {skill: mySkills }
   })
 
-console.log(updateUserSkills)
+
 
   const skillData = data ? data.getSkills : []
 

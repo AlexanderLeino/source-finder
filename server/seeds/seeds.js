@@ -129,6 +129,7 @@ const groupData = [
         aboutGroup: 'This group is pretty new and we are looking for a lot of different personal please apply within.',
         category: 'Web Development',
         adminId: '1',
+        groupMembers: [userId[0], userId[1], userId[2]]
         
     },
     {   
@@ -164,6 +165,7 @@ const groupData = [
         aboutGroup: 'We are looking for someone that loves pokemon as much as we do',
         category: 'Database',
         adminId: '5',
+        
     },
 ]
 

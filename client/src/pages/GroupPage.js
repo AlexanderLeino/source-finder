@@ -1,24 +1,41 @@
-import React, {useState} from 'react'
-import Container from '@mui/material/Container'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
+import React, {useState, useEffect} from 'react'
+import { Typography , Grid, Box, Container, List, ListItem, ListItemText } from '@mui/material'
 import humanCoding from '../images/human-coding.png'
-import Button from '@mui/material/Button'
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
+
+import { useQuery } from '@apollo/client'
 
 import { storage } from '../firebase'
 import { app } from '../firebase'
+import { GET_ONE_GROUP } from '../utils/queries'
 
 const db = app.firestore()
 
 const GroupPage=() =>{
+    const [groupInfo, setGroupInfo] = useState([])
+
+    const {loading, error, data} = useQuery(GET_ONE_GROUP, {
+        variables: {
+            id: "62154933864f48fe07ca12d6"
+        }
+    })
+    
+    const groupData = data ? data.getOneGroup : []
+    
+    useEffect(() => {
+        setGroupInfo(groupData)
+    },[loading])
+    
+    
+    
+    console.log(groupInfo.groupName)
+
+   
 
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
     const [progress, setProgress] = useState(0);
 
+    
     const handleChange = e => {
         if (e.target.files[0]) {
         setImage(e.target.files[0]);
@@ -57,9 +74,23 @@ const GroupPage=() =>{
     return(
         <>
         <Container>
-            <h1 style={{textAlign: 'center'}}>Your Group Name</h1>
+            <h2 style={{textAlign: 'center'}}>{groupInfo.groupName}</h2>
         </Container>
 
+        <Grid container  mt={2}>
+            <Grid item xs={4} style={{border: '1px solid black', display:'flex', flexDirection:'column', justifyContent:'center'}}>
+                <Container maxWidth='xs' style={{border:'1px solid black', background:'white', marginTop:'2rem'}}>
+                    <Typography variant='h5' style={{textAlign:'center'}}>Current Needs</Typography>
+                </Container>
+                <Container>
+
+                </Container>
+            </Grid>
+
+            <Grid item xs={8} style={{border:'1px solid black'}}>
+            
+            </Grid>
+        </Grid>
         
         <Grid lg='4'>
             <Box>
