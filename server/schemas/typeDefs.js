@@ -35,6 +35,7 @@ const typeDefs = gql`
         adminId: String
         groupMembers: [User]
     }
+    
     type GroupPost {
         _id: ID!
         postCreator: String!

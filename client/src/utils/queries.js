@@ -30,6 +30,9 @@ export const GET_ME = gql `
             TwitterLink
             hashNodeLink
             linkedinLink
+            groupMemberOf {
+                _id
+            }
         }
     }
 `
