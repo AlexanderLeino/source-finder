@@ -28,6 +28,7 @@ import { height } from '@mui/system';
 import Login from './Login'
 
 import MyAvitar from '../components/MyAvitar'
+import { WindowOutlined } from '@mui/icons-material';
 
 //style for modal
 const style = {
@@ -119,6 +120,9 @@ export default function NavBar(userData) {
   const goToProfile = () => {
     window.location = '/profile'
   }
+  const goToMyGroups = () => {
+    window.location = '/myGroups'
+  }
   
   const menuId = 'primary-search-account-menu';
   
@@ -143,7 +147,7 @@ export default function NavBar(userData) {
       >
         <MenuItem onClick={goToProfile}>Profile</MenuItem>
         <MenuItem onClick={goEditProfile}>Edit Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>My Groups</MenuItem>
+        <MenuItem onClick={goToMyGroups}>My Groups</MenuItem>
         <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
       </Menu>
     );

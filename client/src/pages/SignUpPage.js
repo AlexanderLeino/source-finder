@@ -170,6 +170,8 @@ function InitialSignUpPage() {
                     }
                   })
                   if (theUpdatedUser){
+                    localStorage.clear()
+                    Auth.login(token)
                     window.location = '/'
                   }
                 }
