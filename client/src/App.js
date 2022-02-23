@@ -15,7 +15,7 @@ import ProfilePage from './pages/ProfilePage'
 
 import Explore from './pages/Explore'
 
-import MyGroups from "./pages/MyGroups";
+// import MyGroups from "./pages/MyGroups";
 
 
 
@@ -39,8 +39,7 @@ function App() {
         <Route path="/group" element={<GroupPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
         <Route path="/explore" element={<Explore />}></Route>
-        <Route path='myGroups' element={<MyGroups />}></Route>
-
+        {/* <Route path='/myGroups' element={<MyGroups />}></Route> */}
       </Routes>
     </Router>  
     </ApolloProvider>
