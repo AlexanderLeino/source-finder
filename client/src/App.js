@@ -15,7 +15,7 @@ import ProfilePage from './pages/ProfilePage'
 
 import Explore from './pages/Explore'
 
-import MyGroups from "./pages/MyGroups";
+import MyGroups from './pages/MyGroups';
 
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './HomePage.css'
 import Auth from '../utils/auth'
 import {Typography, Grid, Button} from '@mui/material'
@@ -10,40 +10,61 @@ import {IoLogoJavascript} from 'react-icons/io'
 import { SiMongodb, SiChakraui, SiPython, SiJquery, SiFigma, SiReact, SiBootstrap} from 'react-icons/si'
 import { GrGraphQl, GrMysql } from 'react-icons/gr'
 
+import { useQuery } from '@apollo/client'
+import { GET_ALL_GROUPS } from '../utils/queries'
 
 
 
-const groupData = [
-  {   
+
+// const groupData = [
+//   {   
      
-      groupName: 'Source Finder',
-      techNeeded: [<IoLogoJavascript/>, <SiMongodb/>, <SiFigma/>, <SiBootstrap/>],
-      aboutGroup: 'This group is pretty new and we are looking for a lot of different personal please apply within.',
-      category: 'Web Development',
-      adminId: '1',
+//       groupName: 'Source Finder',
+//       techNeeded: [<IoLogoJavascript/>, <SiMongodb/>, <SiFigma/>, <SiBootstrap/>],
+//       aboutGroup: 'This group is pretty new and we are looking for a lot of different personal please apply within.',
+//       category: 'Web Development',
+//       adminId: '1',
       
-  },
-  {   
+//   },
+//   {   
      
-      groupName: 'Freelancers R Us',
-      techNeeded: [<GrGraphQl/>, <SiChakraui/>, <SiReact/>],
-      aboutGroup: 'This group is all about finding the best artists in LA.',
-      category: 'Web Development',
-      adminId: '2',
-  },
-  {
+//       groupName: 'Freelancers R Us',
+//       techNeeded: [<GrGraphQl/>, <SiChakraui/>, <SiReact/>],
+//       aboutGroup: 'This group is all about finding the best artists in LA.',
+//       category: 'Web Development',
+//       adminId: '2',
+//   },
+//   {
      
-      groupName: 'Football Fanatics',
-      techNeeded: [<SiPython/>, <GrMysql/>, <SiJquery/>],
-      aboutGroup: 'Looking for people that are passionate about footaball.',
-      category: 'Web Development',
-      adminId: '3',
-  }
-]
+//       groupName: 'Football Fanatics',
+//       techNeeded: [<SiPython/>, <GrMysql/>, <SiJquery/>],
+//       aboutGroup: 'Looking for people that are passionate about footaball.',
+//       category: 'Web Development',
+//       adminId: '3',
+//   }
+// ]
 
-
+const groupData = []
+let hasData = false
 function HomePage() {
   const userData = Auth.getProfile()
+  console.log(groupData)
+  const {loading, data, error} = useQuery(GET_ALL_GROUPS)
+  console.log(error)
+
+  useEffect(() => {
+    console.log(data)
+    if (data){
+      groupData.push(data.getAllGroups[0])
+      groupData.push(data.getAllGroups[1])
+      groupData.push(data.getAllGroups[2])
+      console.log(groupData)
+      hasData = true
+    }
+    
+    
+},[!loading])
+
   
 
   return (
@@ -55,14 +76,17 @@ function HomePage() {
   <Container maxWidth='xl' style={{display:'flex', justifyContent:'center', paddingTop:'1.5rem'}}>
     <Typography variant="h3" style={{textShadow:"1px 1px 2px pink", color:'white', fontWeight:'bold', textAlign:'center'}}>Featured Groups</Typography>
   </Container>
- 
-<Box style={{display:'flex', justifyContent:'center', flexWrap:'wrap', marginBottom:'5rem'}}>
-    {groupData.map(group => {
-      return <Box margin={4} xs={4}><Card name={group.groupName} techNeeded={group.techNeeded} about={group.aboutGroup}/>
- </Box>
-    })}
-  
-  </Box>
+ {loading ?(<div>hello</div>) :
+ ( 
+ <Box style={{display:'flex', justifyContent:'center', flexWrap:'wrap', marginBottom:'5rem'}}>
+ {groupData.map(group => {
+   {console.log(group)}
+   return <Box margin={4} xs={4}><Card name={group.groupName} techNeeded={group.techNeeded} about={group.aboutGroup}/>
+</Box>
+ })}
+
+</Box>)}
+
  
   <Grid container spacing={3} alignItems='center' style={{marginTop:'2rem'}} >
     <Grid  xs={12} sm={12} md={6}>
