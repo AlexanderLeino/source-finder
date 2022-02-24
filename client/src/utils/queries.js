@@ -1,11 +1,19 @@
 
 import { gql } from '@apollo/client';
 
-// export const GET_ALL_GROUPS = gql `
-//     query GetAllGroups {
-
-//     }
-// `
+export const GET_ALL_GROUPS = gql `
+    query GetAllGroups {
+        getAllGroups{
+            groupName
+            aboutGroup
+            category
+            adminId
+            techNeeded{
+                _id
+            }
+        }
+    }
+`
 
 // export const GET_GROUP = gql `
 //     query GetOneGroup($groupName: groupName){
@@ -30,10 +38,7 @@ export const GET_ME = gql `
             TwitterLink
             hashNodeLink
             linkedinLink
-            groupMemberOf {
-                _id
-                groupName
-            }
+            
         }
     }
 `
