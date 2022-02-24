@@ -129,7 +129,8 @@ const groupData = [
         aboutGroup: 'This group is pretty new and we are looking for a lot of different personal please apply within.',
         category: 'Web Development',
         adminId: '1',
-        groupMembers: [userId[0], userId[1], userId[2]]
+        groupMembers: [userId[0], userId[1], userId[2]],
+        profilePic: 'https://firebasestorage.googleapis.com/v0/b/sourcefinder-969bf.appspot.com/o/images%2FScreenshot%202021-08-03%20085042.png?alt=media&token=b6522247-c12e-46eb-89eb-d1e512b486da'
         
     },
     {   
@@ -139,6 +140,7 @@ const groupData = [
         aboutGroup: 'This group is all about finding the best artists in LA.',
         category: 'Web Development',
         adminId: '2',
+        profilePic: 'https://firebasestorage.googleapis.com/v0/b/sourcefinder-969bf.appspot.com/o/images%2FScreenshot%202021-08-03%20085042.png?alt=media&token=b6522247-c12e-46eb-89eb-d1e512b486da'
     },
     {
         _id: groupId[2],
@@ -147,6 +149,7 @@ const groupData = [
         aboutGroup: 'Looking for people that are passionate about footaball.',
         category: 'Web Development',
         adminId: '3',
+        profilePic: 'https://firebasestorage.googleapis.com/v0/b/sourcefinder-969bf.appspot.com/o/images%2FScreenshot%202021-08-03%20085042.png?alt=media&token=b6522247-c12e-46eb-89eb-d1e512b486da'
     },
 
     {
@@ -156,6 +159,7 @@ const groupData = [
         aboutGroup: 'We are looking for someone who is a data junkie but who isnt afraid to get freaky in the sheets if you know what we are saying',
         category: 'Web Development',
         adminId:'4',
+        profilePic: 'https://firebasestorage.googleapis.com/v0/b/sourcefinder-969bf.appspot.com/o/images%2FScreenshot%202021-08-03%20085042.png?alt=media&token=b6522247-c12e-46eb-89eb-d1e512b486da'
     },
 
     {
@@ -165,6 +169,7 @@ const groupData = [
         aboutGroup: 'We are looking for someone that loves pokemon as much as we do',
         category: 'Database',
         adminId: '5',
+        profilePic: 'https://firebasestorage.googleapis.com/v0/b/sourcefinder-969bf.appspot.com/o/images%2FScreenshot%202021-08-03%20085042.png?alt=media&token=b6522247-c12e-46eb-89eb-d1e512b486da'
         
     },
 ]

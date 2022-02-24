@@ -44,25 +44,39 @@ import { GET_ALL_GROUPS } from '../utils/queries'
 //   }
 // ]
 
-const groupData = []
-let hasData = false
+
+
 function HomePage() {
+  const groupData = []
   const userData = Auth.getProfile()
-  console.log(groupData)
+  const [featuredGroup, settingFeatureGroup] = useState([])
   const {loading, data, error} = useQuery(GET_ALL_GROUPS)
-  console.log(error)
+  //console.log(error)
+
+  function scrubObj(obj) {
+    const newObj ={
+      adminId: obj.adminId,
+      groupName: obj.groupName,
+      aboutGroup: obj.aboutGroup,
+      category: obj.category,
+      techNeeded: obj.techNeeded
+    }
+    console.log(newObj)
+    return newObj
+  }
 
   useEffect(() => {
     console.log(data)
     if (data){
-      groupData.push(data.getAllGroups[0])
-      groupData.push(data.getAllGroups[1])
-      groupData.push(data.getAllGroups[2])
-      console.log(groupData)
-      hasData = true
+      groupData.push(scrubObj(data.getAllGroups[0]))
+      groupData.push(scrubObj(data.getAllGroups[1]))
+      groupData.push(scrubObj(data.getAllGroups[2]))
+      settingFeatureGroup(groupData)
+      console.log(featuredGroup)
+      //hasData = true
     }
     
-    
+    console.log(featuredGroup)
 },[!loading])
 
   
@@ -79,7 +93,7 @@ function HomePage() {
  {loading ?(<div>hello</div>) :
  ( 
  <Box style={{display:'flex', justifyContent:'center', flexWrap:'wrap', marginBottom:'5rem'}}>
- {groupData.map(group => {
+ {featuredGroup.map(group => {
    {console.log(group)}
    return <Box margin={4} xs={4}><Card name={group.groupName} techNeeded={group.techNeeded} about={group.aboutGroup}/>
 </Box>
