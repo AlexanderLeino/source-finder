@@ -55,6 +55,7 @@ export const Get_Skills = gql`
 export const GET_ONE_GROUP = gql`
     query GetOneGroup($id: ID!){
         getOneGroup(_id: $id){
+            _id
             groupName
             techNeeded {
                 _id

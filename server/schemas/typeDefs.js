@@ -35,6 +35,14 @@ const typeDefs = gql`
         adminId: String
         groupMembers: [User]
     }
+
+    type Request {
+        _id: ID!
+        requestUser: [User]
+        portfolioLink: String
+        requestOrigin: [Group]
+        skill: [SkillSet]
+    }
     
     type GroupPost {
         _id: ID!
@@ -102,6 +110,8 @@ const typeDefs = gql`
         updateUser(user: UpdatedUser): User
         createGroup(groupName: String!, techNeeded: [String], profilePic: String, aboutGroup: String!, category: String!, adminId: String!): Group
         updateUserSkills(userId: ID!, skill: [ID!]) : User
+        request(requestUser: ID!, postContent: String, portfolioLink: String, requestOrigin: ID!, skill: ID!) : Request
+
     }
 `
 module.exports = typeDefs

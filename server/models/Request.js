@@ -23,6 +23,6 @@ const Request = new Schema ({
     }]
 })
 
-const Requests = model('Request', Request);
+const Requests = model('Requests', Request);
   
 module.exports = Requests;

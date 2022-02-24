@@ -4,5 +4,5 @@ module.exports = {
     GroupPost: require('./GroupPost'),
     Replies: require('./Reply'),
     SkillSet: require('./SkillSet'),
-    Requests: require('./Request')
+    Request: require('./Request')
 }
