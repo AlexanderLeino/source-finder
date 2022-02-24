@@ -3,5 +3,6 @@ module.exports = {
     Group: require('./Group'),
     GroupPost: require('./GroupPost'),
     Replies: require('./Reply'),
-    SkillSet: require('./SkillSet')
+    SkillSet: require('./SkillSet'),
+    Requests: require('./Request')
 }
