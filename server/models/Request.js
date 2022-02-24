@@ -6,6 +6,9 @@ const Request = new Schema ({
         type: Schema.Types.ObjectId,
         ref:'User'
     },
+    requestUserName: {
+        type: String
+    },
     postContent: {
         type: String,
         required: true
@@ -17,10 +20,10 @@ const Request = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'Group',
     },
-    skill: [{
-        type: Schema.Types.ObjectId,
-        ref: 'SkillSet'
-    }]
+    skill: {
+        type: String
+    
+    }
 })
 
 const Requests = model('Requests', Request);

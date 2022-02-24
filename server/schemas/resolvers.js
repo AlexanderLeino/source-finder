@@ -119,7 +119,7 @@ const resolvers = {
                 console.log(err)
             }
         },
-        request: async (parent, args) => {
+        joinRequest: async (parent, args) => {
             try{
                 const joinRequest = await Request.create(args)
                 return joinRequest
