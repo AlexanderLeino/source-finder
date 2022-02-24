@@ -38,10 +38,12 @@ const typeDefs = gql`
 
     type Request {
         _id: ID!
-        requestUser: [User]
+        requestUser: ID!
+        requestUserName: String
+        postContent: String
         portfolioLink: String
-        requestOrigin: [Group]
-        skill: [SkillSet]
+        requestOrigin: ID
+        skill: String
     }
     
     type GroupPost {
@@ -110,7 +112,7 @@ const typeDefs = gql`
         updateUser(user: UpdatedUser): User
         createGroup(groupName: String!, techNeeded: [String], profilePic: String, aboutGroup: String!, category: String!, adminId: String!): Group
         updateUserSkills(userId: ID!, skill: [ID!]) : User
-        request(requestUser: ID!, postContent: String, portfolioLink: String, requestOrigin: ID!, skill: ID!) : Request
+        joinRequest(requestUser: ID!, requestUserName: String, postContent: String, portfolioLink: String, requestOrigin: ID!, skill: String) : Request
 
     }
 `
