@@ -63,3 +63,15 @@ mutation CreateGroup($groupName: String!, $aboutGroup: String!, $category: Strin
         } 
     }
 `
+
+export const CREATE_REQUEST = gql `
+    mutation Request($requestUser: String, $postContent: String, $portfolioLink: String, $requestOrigin: String, $skill: String){
+        joinRequest(requestUser: $requestUser, postContent: $postContent, portfolioLink: $portfolioLink, requestOrigin: $requestOrigin, skill: $skill ){
+            requestUser
+            postContent
+            portfolioLink
+            requestOrigin
+            skill
+        }
+    }
+`

@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Group, GroupPost, Replies, SkillSet } = require('../models')
+const { User, Group, GroupPost, Replies, SkillSet, Request } = require('../models')
 
 const { signToken } = require('../utils/auth')
 
@@ -116,6 +116,15 @@ const resolvers = {
                 }])
                 return updatedUser
             } catch(err){
+                console.log(err)
+            }
+        },
+        request: async (parent, args) => {
+            try{
+                const joinRequest = await Request.create(args)
+                return joinRequest
+            }
+            catch(err){
                 console.log(err)
             }
         }
