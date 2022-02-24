@@ -17,8 +17,8 @@ const Request = new Schema ({
         type: String
     },
     requestOrigin: {
-        type: Schema.Types.ObjectId,
-        ref: 'Group',
+        type: String
+
     },
     skill: {
         type: String

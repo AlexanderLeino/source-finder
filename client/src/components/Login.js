@@ -71,6 +71,7 @@ function Login (){
           <TextField
             id="outlined-name"
             label="Password"
+            type='password'
             value={password}
             onChange={({target}) => setPassword(target.value)}
           />

@@ -45,6 +45,14 @@ const resolvers = {
             let foundSkill = SkillSet.findOne({name:skill})
 
             return foundSkill
+        },
+        getMyRequests: async (parent, requestOrigin) => {
+            console.log(requestOrigin)
+            //var ObjectId = require('mongodb').ObjectId; 
+            //let o_id = new ObjectId(requestOrigin.requestOrigin)
+            const theRequest = await Request.find(requestOrigin)
+            console.log(theRequest)
+            return theRequest
         }
         
     },
