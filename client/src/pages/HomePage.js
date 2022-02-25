@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './HomePage.css'
 import Auth from '../utils/auth'
-import {Typography, Grid, Button} from '@mui/material'
+import {Typography, Grid, Button, useForkRef} from '@mui/material'
 import  Box  from '@mui/material/Box'
 import Card from '../components/Card'
 import Container from '@mui/material/Container'
@@ -47,39 +47,33 @@ import { GET_ALL_GROUPS } from '../utils/queries'
 
 
 function HomePage() {
-  const groupData = []
+  
   const userData = Auth.getProfile()
-  const [featuredGroup, settingFeatureGroup] = useState([])
+  const [featuredGroup, setFeatureGroup] = useState([])
+  const [tech, setTechNeeded] = useState([])
   const {loading, data, error} = useQuery(GET_ALL_GROUPS)
-  //console.log(error)
 
-  function scrubObj(obj) {
-    const newObj ={
-      adminId: obj.adminId,
-      groupName: obj.groupName,
-      aboutGroup: obj.aboutGroup,
-      category: obj.category,
-      techNeeded: obj.techNeeded
-    }
-    console.log(newObj)
-    return newObj
-  }
 
-  useEffect(() => {
-    console.log(data)
-    if (data){
-      groupData.push(scrubObj(data.getAllGroups[0]))
-      groupData.push(scrubObj(data.getAllGroups[1]))
-      groupData.push(scrubObj(data.getAllGroups[2]))
-      settingFeatureGroup(groupData)
-      console.log(featuredGroup)
-      //hasData = true
-    }
-    
-    console.log(featuredGroup)
-},[!loading])
+  const featuredCardData = data ? data.getAllGroups : []
 
   
+
+  let funData = ['HTML', 'CSS']
+  useEffect(() => {
+     featuredCardData.map((group, index)=> {
+        group.techNeeded.map((techNeeded) => {
+         let name = techNeeded.name
+         console.log(name)
+
+
+        })
+      })
+
+  }, [featuredCardData])
+
+  useEffect(() => {
+    setFeatureGroup(featuredCardData)
+  },[featuredCardData])
 
   return (
     <>
@@ -94,8 +88,8 @@ function HomePage() {
  ( 
  <Box style={{display:'flex', justifyContent:'center', flexWrap:'wrap', marginBottom:'5rem'}}>
  {featuredGroup.map(group => {
-   {console.log(group)}
-   return <Box margin={4} xs={4}><Card name={group.groupName} techNeeded={group.techNeeded} about={group.aboutGroup}/>
+   
+   return <Box margin={4} xs={4}><Card cardInfo={group}/>
 </Box>
  })}
 

@@ -36,7 +36,7 @@ function App() {
         <Route path='/edit' element={<EditProfile />}></Route>
         <Route path="/signUp" element={<SignUpPage/>}></Route>
         <Route path='/makeGroup' element={<QMakeGroup />}></Route>
-        <Route path="/group" element={<GroupPage />}></Route>
+        <Route path="/group/:id" element={<GroupPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
         <Route path="/explore" element={<Explore />}></Route>
         <Route path='myGroups' element={<MyGroups />}></Route>
