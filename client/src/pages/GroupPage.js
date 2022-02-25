@@ -3,7 +3,7 @@ import { Typography , Grid, Box, Container, List, ListItem, ListItemText } from 
 import humanCoding from '../images/human-coding.png'
 import Modal from '@mui/material/Modal';
 import { useQuery } from '@apollo/client'
-
+import { useParams } from 'react-router-dom';
 import { storage } from '../firebase'
 import { app } from '../firebase'
 import { GET_ONE_GROUP } from '../utils/queries'
@@ -27,24 +27,32 @@ const style = {
 
 const GroupPage=() =>{
     let isIn = false
-    const user = Auth.getProfile()
-    const [groupInfo, setGroupInfo] = useState([])
     let groupMates
+    const user = Auth.getProfile()
+
+    const { id } = useParams()
+
+    
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     
     const {loading, error, data} = useQuery(GET_ONE_GROUP, {
         variables: {
-            id: "62154933864f48fe07ca12d6"
+            id
         }
     })
-
+    const groupData = data ? data.getOneGroup : []
+    
+    const [groupInfo, setGroupInfo] = useState([])
+    const [techNeeded, setTechNeeded] = useState([])
+    const [groupMembers, setGroupMembers] = useState([])
+    
     if (data != null){
         groupMates = data.getOneGroup.groupMembers
 
         for (let i = 0; i < groupMates.length; i++){
-            console.log(groupMates)
+           
             if (groupMates[i].userName === user.data.userName){
                 isIn = true
                 break
@@ -52,86 +60,53 @@ const GroupPage=() =>{
         }
     }
     
-   
-    
     useEffect(() => {
         setGroupInfo(groupData)
         console.log(groupInfo)
-    },[!loading])
+    },[groupData])
 
+    useEffect(() => {
+        let techData = groupInfo.techNeeded
+        setTechNeeded(techData)
+    },[groupInfo])
 
-    const groupData = data ? data.getOneGroup : []
-    
-    
-    
-    const SubmitJoin = () => {
-        if (user.data != null) {
-            //do the modal update here
-            const joinMessage = {
-                userName: user.data.userName
-            }
+    useEffect(() => {
+        let groupMembers = groupInfo.groupMembers
+        console.log(groupMembers)
+    },[groupInfo])
 
-            console.log(joinMessage)
-        }
-        else{
-            //Open the login Modal here
-        }
-    }
-
-    return(
-        <>
-        <Container>
-            <h2 style={{textAlign: 'center'}}>{groupInfo.groupName}</h2>
-        </Container>
-
-        {isIn ? (<div></div>) : (<button onClick={handleOpen}>Request To Join</button>)}
-
-        <Grid container  mt={2}>
-            <Grid item xs={4} style={{border: '1px solid black', display:'flex', flexDirection:'column', justifyContent:'center'}}>
-                <Container maxWidth='xs' style={{border:'1px solid black', background:'white', marginTop:'2rem'}}>
-                    {/* <Typography variant='h5' style={{textAlign:'center'}}>Current Needs</Typography> */}
-                    <img src={groupData.profilePic}></img>
-                </Container>
+    return(<>
                 <Container>
+            <Typography variant='h1' style={{textAlign: 'center'}}>{groupInfo.groupName === undefined ? '' : groupInfo.groupName}</Typography>
+        </Container>
+<Container maxWidth='lg'>
+{isIn ? (<div></div>) : (<button onClick={handleOpen}>Request To Join</button>)}
 
+        <Grid container mt={2}>
+            <Grid item xs={2} style={{border: '1px solid black'}}>
+                <Container style={{border:'1px solid black', background:'white', maxWidth:'fit-content', display:'flex', margin:'1rem'}}>
+                    <Typography variant='h5' style={{textAlign:'center'}}>Current Needs</Typography>
+                </Container>
+
+                <Container>
+                    <List style={{textAlign:'center'}}>
+                        {techNeeded === undefined ? [] : techNeeded.map((tech, index) => {
+                        return <>
+                            <ListItem style={{textAlign: 'center'}}>
+                                <ListItemText>{tech.name}</ListItemText>
+                            </ListItem>
+                            </>
+                        })}
+                    </List>
                 </Container>
             </Grid>
-
-            <Grid item xs={8} style={{border:'1px solid black'}}>
-            
-            </Grid>
+            <Grid item xs={10}>
+                <Container maxWidth='sm' style={{border:'2px solid black'}}>
+                    <Typography>Hello</Typography>
+                </Container>
         </Grid>
-        
-        <Grid lg='4'>
-            <Box>
-                <h2>Group Members</h2>
-            </Box>
-            { loading ? (
-                <div></div>
-            ) : (
-                 <Box>
-                 {/* {groupInfo.groupMembers.map(user => {
-                     <p>user.userName</p>
-                 })} */}
-                 </Box>
-            )
-               
-            }
-            
-        </Grid>
-        <Grid lg='4'>
-           
-        </Grid>
-
-
-
-
-
-
-
-
-        
-      
+</Grid>
+</Container>
         {loading ? ( <div></div>) : (
         <Modal
         open={open}

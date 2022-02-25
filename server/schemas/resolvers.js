@@ -17,8 +17,8 @@ const resolvers = {
             ])
             return user
         },
-        getOneGroup: async (parent, {groupName}) => {
-            const group = await Group.findOne(groupName).populate([{
+        getOneGroup: async (parent, _id) => {
+            const group = await Group.findOne({_id}).populate([{
                 path: 'groupMembers',
                 model: 'User'
             },
@@ -30,7 +30,10 @@ const resolvers = {
             return group
         },
         getAllGroups: async (parent, _) => {
-            const allGroups = await Group.find()
+            const allGroups = await Group.find().populate([{
+                path:'techNeeded',
+                model:'SkillSet'
+            }])
             return allGroups
         },
         getSkills: async (parent, skillSet) => {

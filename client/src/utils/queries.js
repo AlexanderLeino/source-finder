@@ -4,12 +4,14 @@ import { gql } from '@apollo/client';
 export const GET_ALL_GROUPS = gql `
     query GetAllGroups {
         getAllGroups{
+            _id
             groupName
             aboutGroup
             category
             adminId
             techNeeded{
                 _id
+                name
             }
         }
     }
