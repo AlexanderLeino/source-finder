@@ -78,3 +78,16 @@ export const GET_ONE_GROUP = gql`
         }
     }
 `
+
+export const GET_MY_REQUESTS = gql`
+    query GetMyRequests($requestOrigin: ID!){
+        getMyRequests(requesetOrigin: $requestOrigin){
+            requestUser
+            requestUserName
+            postContent
+            portfolioLink
+            requestOrigin
+            skill
+        }
+    }
+`

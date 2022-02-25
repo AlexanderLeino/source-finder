@@ -42,7 +42,7 @@ const typeDefs = gql`
         requestUserName: String
         postContent: String
         portfolioLink: String
-        requestOrigin: ID
+        requestOrigin: String!
         skill: String
     }
     
@@ -104,6 +104,7 @@ const typeDefs = gql`
         getAllGroups : [Group]
         getSkills(skill: String!): [SkillSet]
         getOneSkill(skill: String!) : SkillSet
+        getMyRequests(requestOrigin: String!): [Request]
     }
 
     type Mutation {
@@ -112,7 +113,7 @@ const typeDefs = gql`
         updateUser(user: UpdatedUser): User
         createGroup(groupName: String!, techNeeded: [String], profilePic: String, aboutGroup: String!, category: String!, adminId: String!): Group
         updateUserSkills(userId: ID!, skill: [ID!]) : User
-        joinRequest(requestUser: ID!, requestUserName: String, postContent: String, portfolioLink: String, requestOrigin: ID!, skill: String) : Request
+        joinRequest(requestUser: ID!, requestUserName: String, postContent: String, portfolioLink: String, requestOrigin: String!, skill: String) : Request
 
     }
 `

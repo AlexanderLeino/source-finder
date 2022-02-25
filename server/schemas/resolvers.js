@@ -49,9 +49,14 @@ const resolvers = {
 
             return foundSkill
         },
-        // searchForLoggedInUser: async (parent, _id) => {
-
-        // }
+        getMyRequests: async (parent, requestOrigin) => {
+            console.log(requestOrigin)
+            //var ObjectId = require('mongodb').ObjectId; 
+            //let o_id = new ObjectId(requestOrigin.requestOrigin)
+            const theRequest = await Request.find(requestOrigin)
+            console.log(theRequest)
+            return theRequest
+        }
         
     },
     Mutation: {

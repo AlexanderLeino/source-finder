@@ -65,7 +65,7 @@ mutation CreateGroup($groupName: String!, $aboutGroup: String!, $category: Strin
 `
 
 export const CREATE_REQUEST = gql `
-    mutation Request($requestUser: ID!, $requestUserName: String, $postContent: String, $portfolioLink: String, $requestOrigin: ID!, $skill: String){
+    mutation Request($requestUser: ID!, $requestUserName: String, $postContent: String, $portfolioLink: String, $requestOrigin: String!, $skill: String){
         joinRequest(requestUser: $requestUser, requestUserName: $requestUserName, postContent: $postContent, portfolioLink: $portfolioLink, requestOrigin: $requestOrigin, skill: $skill ){
             requestUser
             requestUserName
