@@ -40,7 +40,9 @@ export const GET_ME = gql `
             TwitterLink
             hashNodeLink
             linkedinLink
-            
+            isAdmin{
+                _id
+            }
         }
     }
 `
@@ -80,8 +82,8 @@ export const GET_ONE_GROUP = gql`
 `
 
 export const GET_MY_REQUESTS = gql`
-    query GetMyRequests($requestOrigin: ID!){
-        getMyRequests(requesetOrigin: $requestOrigin){
+    query GetMyRequests($requestOrigin: String!){
+        getMyRequests(requestOrigin: $requestOrigin){
             requestUser
             requestUserName
             postContent

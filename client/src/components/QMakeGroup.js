@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { useMutation } from '@apollo/client';
 import { CREATE_GROUP } from '../utils/mutations';
+import { UPDATE_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 import Container from '@mui/material/Container'
@@ -13,6 +14,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
+
 
 
 import { storage } from '../firebase'
@@ -31,6 +33,7 @@ function QMakeGroup(){
     const [image, setImage] = useState(null);
     const thisUser = Auth.getProfile()
     const [createGroup] = useMutation(CREATE_GROUP)
+    const [updateUser] = useMutation(UPDATE_USER)
 
     const [techState, setState] = React.useState({
         HTML: false,
@@ -101,28 +104,42 @@ function QMakeGroup(){
         console.log(techNeeded)
         const NewGroup = {
             groupName: groupName,
-            techNeeded: techNeeded,
+            techNeeded: ["6219a2b989fbd3889a8f065a","6219a2b989fbd3889a8f065b"],
             aboutGroup: aboutGroup,
             category: 'frontEnd',
             adminId: thisUser.data._id,
             profilePic: profilePic
         }
         
-
-        console.log(NewGroup)
         try{
             const theGroup = await createGroup({
                 variables: {
                     ...NewGroup
                 }
             })
-            console.log(theGroup)
+            if(theGroup){
+                console.log(thisUser.data._id)
+                console.log(theGroup.data.createGroup._id)
+                try{
+                    const updatedUser = await updateUser({
+                        variables: {
+                            user: {
+                                _id: thisUser.data._id,
+                                isAdmin: theGroup.data.createGroup._id
+                            }
+                        }
+                    })
+                    console.log(updatedUser)
+                }
+                catch (err){
+                    console.log(err)
+                }
+                
+            }
         }
         catch(err){
             console.log(err)
         }
-        
-        console.log(theGroup)
         
 
         

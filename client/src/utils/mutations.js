@@ -36,6 +36,9 @@ export const UPDATE_USER = gql`
             TwitterLink
             hashNodeLink
             linkedinLink
+            isAdmin{
+                _id
+            }
     }
 }
 `
@@ -52,10 +55,13 @@ export const UPDATE_USER_SKILLS = gql`
 `
 
 export const CREATE_GROUP = gql`
-mutation CreateGroup($groupName: String!, $aboutGroup: String!, $category: String!, $adminId: String!, $techNeeded: [String], $profilePic: String) {
+mutation CreateGroup($groupName: String!, $aboutGroup: String!, $category: String!, $adminId: String!, $techNeeded: [ID!], $profilePic: String) {
     createGroup(groupName: $groupName, aboutGroup: $aboutGroup, category: $category, adminId: $adminId, techNeeded: $techNeeded, profilePic: $profilePic ){
+            _id
             groupName
-            techNeeded
+            techNeeded{
+                _id
+            }
             aboutGroup
             category
             adminId

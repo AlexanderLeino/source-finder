@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -22,13 +22,18 @@ import { Container } from '@mui/material'
 
 import Auth from '../utils/auth'
 
+import { useQuery } from '@apollo/client'
+import { GET_ME } from '../utils/queries';
+import {GET_MY_REQUESTS} from '../utils/queries'
+
 import logo from '../images/save.png'
 import { height } from '@mui/system';
 
 import Login from './Login'
 
 import MyAvitar from '../components/MyAvitar'
-import { WindowOutlined } from '@mui/icons-material';
+import Notifications from './Notifications'
+import { ConnectingAirportsOutlined, WindowOutlined } from '@mui/icons-material';
 
 //style for modal
 const style = {
@@ -83,11 +88,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar(userData) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+export default function NavBar() {
+  const userData = Auth.getProfile()
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [hasId, setHasId] = useState(false)
+  const [adminId, setAdminId] = useState('')
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -111,6 +119,10 @@ export default function NavBar(userData) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleNotificationMenuOpen = (event) => {
+    
+  }
+
   const goSignUp = () =>{
     window.location = '/signUp'
   }
@@ -123,12 +135,48 @@ export default function NavBar(userData) {
   const goToMyGroups = () => {
     window.location = '/myGroups'
   }
+  const goLogout = () => {
+    Auth.logout()
+  }
   
   const menuId = 'primary-search-account-menu';
   
   let renderMenu
 
+
+  const getGroupInfo = async (id) => {
+    console.log(id)
+    try{
+      const usersGroup = await useQuery(GET_ME, {
+        variables: {id: id}
+      })
+      if (usersGroup.data){
+        if (usersGroup.data.me.isAdmin != null)
+        setAdminId(usersGroup.data.me.isAdmin._id) 
+
+      }
+    }
+    catch(err){
+
+      console.log(err)
+    }
+    
+  }
+
+
+  useEffect(() => {
+    console.log(adminId)
+    if(adminId != null){
+      setHasId(true)
+    }
+    console.log(hasId)
+  },[adminId])
+
+
   if (Auth.loggedIn()){
+
+    getGroupInfo(userData.data._id)
+
     renderMenu = (
       <Menu
         anchorEl={anchorEl}
@@ -148,7 +196,7 @@ export default function NavBar(userData) {
         <MenuItem onClick={goToProfile}>Profile</MenuItem>
         <MenuItem onClick={goEditProfile}>Edit Profile</MenuItem>
         <MenuItem onClick={goToMyGroups}>My Groups</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+        <MenuItem onClick={goLogout}>Logout</MenuItem>
       </Menu>
     );
   }else{
@@ -245,11 +293,8 @@ export default function NavBar(userData) {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
+            {hasId ? (<Notifications adminid={adminId}/>) : (<Notifications adminid={null}/>)}
+            
             <IconButton
               size="large"
               aria-label="show 17 new notifications"

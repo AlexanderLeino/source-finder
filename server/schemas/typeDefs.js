@@ -95,6 +95,7 @@ const typeDefs = gql`
         TwitterLink: String
         hashNodeLink: String
         linkedinLink: String
+        isAdmin: ID!
     }
 
 
@@ -111,7 +112,7 @@ const typeDefs = gql`
         createUser(userName: String!, password: String!, email: String!) : Auth
         login(email: String!, password: String!): Auth
         updateUser(user: UpdatedUser): User
-        createGroup(groupName: String!, techNeeded: [String], profilePic: String, aboutGroup: String!, category: String!, adminId: String!): Group
+        createGroup(groupName: String!, techNeeded: [ID!], profilePic: String, aboutGroup: String!, category: String!, adminId: String!): Group
         updateUserSkills(userId: ID!, skill: [ID!]) : User
         joinRequest(requestUser: ID!, requestUserName: String, postContent: String, portfolioLink: String, requestOrigin: String!, skill: String) : Request
 
