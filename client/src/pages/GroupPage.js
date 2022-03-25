@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Typography , Grid, Box, Container, List, ListItem, ListItemText } from '@mui/material'
+import { Typography , Grid, Box, Container, List, ListItem, ListItemText, Button } from '@mui/material'
 import humanCoding from '../images/human-coding.png'
 import Modal from '@mui/material/Modal';
 import { useQuery } from '@apollo/client'
@@ -8,7 +8,8 @@ import { storage } from '../firebase'
 import { app } from '../firebase'
 import { GET_ONE_GROUP } from '../utils/queries'
 import Auth from '../utils/auth'
-
+import './GroupPage.css'
+import ColorTabs from '../components/Tabs';
 import RequestJoin from '../components/ReqestJoin';
 
 
@@ -25,7 +26,12 @@ const style = {
   };
   
 
-const GroupPage=() =>{
+const GroupPage = () =>{
+    
+    
+    
+    
+    console.log()
     let isIn = false
     let groupMates
     const user = Auth.getProfile()
@@ -76,49 +82,50 @@ const GroupPage=() =>{
     },[groupInfo])
 
     return(<>
-                <Container>
+                <Container maxWidth='100%' className='spacer3 layer3'>
             <Typography variant='h1' style={{textAlign: 'center'}}>{groupInfo.groupName === undefined ? '' : groupInfo.groupName}</Typography>
-        </Container>
 <Container maxWidth='lg'>
-{isIn ? (<div></div>) : (<button onClick={handleOpen}>Request To Join</button>)}
-
         <Grid container mt={2}>
-            <Grid item xs={2} style={{border: '1px solid black'}}>
-                <Container style={{border:'1px solid black', background:'white', maxWidth:'fit-content', display:'flex', margin:'1rem'}}>
-                    <Typography variant='h5' style={{textAlign:'center'}}>Current Needs</Typography>
+            <Grid item xs={4} style={{backgroundColor:'#ffffffb5', borderRadius:'25px', border:'3px solid purple', padding:'.5rem' , boxShadow:'7px 5px 5px purple'}}>
+                <Container style={{ whiteSpace:'nowrap',  maxWidth:'max-content', display:'flex',justifyContent:'center', borderRadius:'25px', backgroundColor:'transparent' }}>
+                    <h5 style={{textAlign:'center', fontWeight:'bold', fontSize:'40px', color:'#190b28'}}>Help Wanted</h5>
                 </Container>
 
-                <Container>
-                    <List style={{textAlign:'center'}}>
+                <Container style={{ display:'flex' ,justifyContent:'center', flexDirection:'column', marginTop:'.5rem'}}>
+                    <ul style={{textAlign:'center' ,listStyle:'none', lineHeight:'3rem', fontSize:'1.55rem'}} >
                         {techNeeded === undefined ? [] : techNeeded.map((tech, index) => {
-                        return <>
-                            <ListItem style={{textAlign: 'center'}}>
-                                <ListItemText>{tech.name}</ListItemText>
-                            </ListItem>
+                            return <>
+                           
+                                <li style={{textAlign: 'center',}} >{tech.name}</li>
+                            
                             </>
                         })}
-                    </List>
+                    </ul>
+                    {isIn ? (<div></div>) : (<Button style={{backgroundColor:'purple', fontSize:'1rem'}} variant='contained' onClick={handleOpen}>Request To Join</Button>)}
                 </Container>
             </Grid>
-            <Grid item xs={10}>
-                <Container maxWidth='sm' style={{border:'2px solid black'}}>
-                    <Typography>Hello</Typography>
+            <Grid item xs={8}>
+                <Container maxWidth='sm' style={{backgroundColor:'#ffffffb5', borderRadius:'25px', border:'3px solid purple', padding:'.5rem', boxShadow:'7px 5px 5px purple'}}>
+                    <Typography variant='h5' style={{textAlign:'center', fontColor:'#190b28', fontSize:'40px', fontWeight:'bold'}}>About Us</Typography>
+                    <Typography style={{textAlign:'center', fontColor:'#190b28', fontSize:'20px', marginTop:'10px'}}>{groupInfo.aboutGroup}</Typography>
                 </Container>
         </Grid>
 </Grid>
 </Container>
         {loading ? ( <div></div>) : (
-        <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+            <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description">
         <Box sx={style}>
             <RequestJoin userData = {user} groupData = {data.getOneGroup}/>
         </Box>
       </Modal>)}
-        
-
+    <Container maxWidth='md' style={{marginTop:'2.25rem'}}>
+        <ColorTabs center/>
+    </Container>
+</Container>
         </>
     )
 
