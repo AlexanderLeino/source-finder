@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
 import { Link } from 'react-router-dom'
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,7 +6,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Box} from '@mui/material'
 import business from '../images/business.jpg'
-import {FaJava} from 'react-icons/fa'
 import styled from 'styled-components'
 import helperFunctions from '../utils/helpers';
 
@@ -61,8 +59,7 @@ export default function FeatureGroupCard({cardInfo}) {
         </Typography>
         
         <Box mt={1} style={{display:'flex', flexWrap:'wrap', justifyContent:'space-around', fontSize:'30px'}}>
-         { techNeeded.map((tech) => {
-           getIcon(tech.name)
+         { techNeeded && techNeeded.map((tech) => {
            return <Box>{getIcon(tech.name)}</Box>
           })}
         </Box>

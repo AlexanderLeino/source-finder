@@ -38,33 +38,11 @@ function SelectTechForm() {
 
 
 const buttonClick = (e) =>{
-  function getId(skill){
-    return skill.name === e.target.value
-  }
-  const thisId =  skillData.find(getId)
-  console.log(thisId)
   //Fixes issue where if user clicks on the "+" on the button it wont push undefined.
   if(e.target.value === undefined) return
+  removeButton(e.target.value)
   
-  if (e.target.style.background === 'purple'){
-    e.target.style.background = 'blue'
 
-    for (let i = 0; i < 21; i++){
-      if (localStorage.getItem('tech' + i) === null){
-        localStorage.setItem('tech' + i, thisId._id)
-        break
-      }
-    }
-  }
-  else{
-    e.target.style.background = 'purple'
-    for (let i = 0; i < 21; i++){
-      if (localStorage.getItem('tech' + i) != null && localStorage.getItem('tech' + i) === thisId._id){
-        localStorage.removeItem('tech' + i)
-        break
-      }
-    }
-  }
 }
 
 const removeButton = (nameOfLanguage) => {
@@ -87,7 +65,7 @@ const removeButton = (nameOfLanguage) => {
     <Typography variant='h4' style={{marginTop:'.5rem', fontWeight:'bold', color:'#bf4578'}}>Select Preferred Technologies</Typography>
     <Box maxWidth='sm' style={{padding:'1rem', display: 'flex', flexWrap:'wrap', justifyContent:'center'}} >
        {codingLanguages.map((language)=> {
-        return <SkillsButton detectClick={buttonClick} name={language} ></SkillsButton>
+        return <SkillsButton onButtonClick={buttonClick} name={language} ></SkillsButton>
        })}
     </Box>
 
