@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom'
 import { Select } from '@mui/material'
 import SkillsButton from '../components/SkillsButton'
 import SelectTechForm from '../components/SelectTechForm'
+import Dialog from '../components/Dialog'
 
 function InitialSignUpPage() {
     const steps = ['Who Are You?', 'Select Preferred Technologies', 'Account Creation Complete'];
@@ -342,6 +343,7 @@ function InitialSignUpPage() {
                 </Button>}
         </Box>
     </Container>
+        <Dialog />
     </Container>
 </>
   )
